@@ -101,7 +101,7 @@
     </div>
 </section>
 
-<section class="section pt-lg-0" id="restaurant-content" style="padding-top: 0px">
+<section class="section pt-lg-0 pb-0 pb-lg-6" id="restaurant-content" style="padding-top: 0px">
     <input type="hidden" id="rid" value="{{ $restorant->id }}" />
     <div class="container container-restorant">
 

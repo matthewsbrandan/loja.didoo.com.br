@@ -1,11 +1,4 @@
-<style>
-@media(max-width:598px){
-    .d-nnone {
-        display:none; 
-    }
-}
-</style>
-<div class="d-nnone">
+<div class="d-none d-sm-block">
     <div class="container-fluid d-flex py-4" style="background:black">
         <div class="col-4 text-white">
             <img src="{{ $restorant->logom }}" class="rounded" />
@@ -26,19 +19,29 @@
         </div>
     </div>
 
-    <div class="container-fluid d-flex bg-fixed text-white py-2">
-        <div class="col-4 text-white">
-            <p class="text-white">
-                LGPD e Cookies
-            </p>
+    <div class="container-fluid bg-fixed text-white py-2" style="
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    ">
+        <div class="p-3 d-flex align-items-center text-white">
+            <span class="font-weight-bold">Cookies</span>
         </div>
-        <div class="col-4 text-white">
-            <p>
-                Criado orgulhosamente: Didoo
-            </p>
-        </div>
-        <div class="col-4 text-white">
-            <p>Politica de Privacidade</p>
+        <a href="https://www.didoo.com.br" class="
+            p-3
+            d-flex
+            justify-content-center
+            align-items-center
+            text-center
+            text-white
+        ">
+            <span class="font-weight-bold hide-max-350" style="white-space: nowrap;">Feito com:</span>
+            <img
+                src="{{ asset('uploads/settings/f1827efb-1049-4022-9aa2-3a42cbe3e218_site_logo_dark.jpg') }}"
+                class="d-block ml-2" style="height: 1.35rem; object-fit: contain;"
+            />
+        </a>
+        <div class="p-3 d-flex align-items-center justify-content-end text-right text-white">
+            <span class="font-weight-bold">Politica de Privacidade</span>
         </div>
     </div>
 </div>

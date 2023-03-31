@@ -117,19 +117,15 @@
                   <a class="btn btn-neutral btn-icon btn-cart d-lg-none" style="cursor:pointer; max-height: 2.6875rem;" data-toggle="modal" data-target="#modal-search-product">
                     <img src="{{ asset('/images/icons/06_search.svg') }}" alt="Pesquisa">
                   </a>
-                  
                   <a href="/store/{{$restorant->subdomain}}" class="d-none d-lg-inline-block mr-3 b-bottom">
                     Catálogo
                   </a> 
-                  <a href="/store/{{$restorant->subdomain}}/sobre-nos" class="d-none d-lg-inline-block mr-4">
+                  <a href="/store/{{$restorant->subdomain}}/sobre-nos" class="d-none d-lg-inline-block">
                     Sobre nós
-                  </a> 
-
-                  {{-- 
-                    <a href="/login" class="d-none d-lg-inline-block mx-4">
-                      Entrar
-                    </a>
-                  --}}
+                  </a>                  
+                  <a href="/login" class="d-none d-lg-inline-block mx-4">
+                    Entrar
+                  </a>
                   
                   |
                   

@@ -91,6 +91,13 @@
   ::-webkit-scrollbar-track{
     background: #e2e8f0;
   }
+  @media(max-width: 575px){
+    #home > .bg-image{
+      height: 180px;
+      object-fit: cover;
+      filter: brightness(0.4);
+    }
+  }
 </style>
  
 <section id="home" class="custon-banner vh-100 section-profile-cover section-shaped d-lg-block d-lx-block">
@@ -140,7 +147,7 @@
   </div>
 </section>
 <!-- COMEÇO DA IMAHGEM -->
-<div class="row justify-content-center my-5 w-100 d-nnone">
+<div class="row justify-content-center my-5 w-100 d-none d-sm-flex">
   <img loading="lazy" src="/uploads/settings/logo.png" width="50%">
 </div> 
 <!-- FIM DA IMAGEM -->
@@ -200,7 +207,7 @@
 
 <!-- MOBILE -->
 
-<section class="section section-lg d-md-block d-lg-none d-lx-none" style="padding-bottom: 0px">
+<section class="section section-lg d-md-block d-lg-none d-lx-none p-sm-0" style="padding-bottom: 0px">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -209,7 +216,10 @@
     </div>
     <div class="row mt-3">
       <div class="col">
-        <img src="{{ $restorant->logom }}" style="border-radius:50%; width:70px; height:60px" />
+        <img
+          src="{{ $restorant->logom }}"
+          style="border-radius:50%; width: 60px; height:60px; object-fit: cover;"
+        />
       </div>
       <div class="col-5">
         <p class="m-0" style="color:black">{{ $restorant->name }}</p>
@@ -244,8 +254,10 @@
         </div>
       </div>
       <div class="col-12 text-center mb-3 mt-2">
-        <span class="px-5 py-2" style="{{!empty($openingTime) && !empty($closingTime) ? 'background-color: #7800b4 ': 'background-color: red ' }}; border-radius:20px; color:white">
-          {{(!empty($openingTime) && !empty($closingTime) ? "Aberto": "FECHADO"  )}}
+        <span
+          class="px-5 py-1 text-uppercase font-weight-bold"
+          style="{{!empty($openingTime) && !empty($closingTime) ? 'background-color: #7edc12 ': 'background-color: #dc1c39 ' }}; border-radius:20px; color:white">
+          {{(!empty($openingTime) && !empty($closingTime) ? "Aberto": "Fechado"  )}}
         </span>
       </div>
     </div> 
@@ -280,7 +292,7 @@
   </div>
 </section> 
 
-<section class="section pt-lg-0" id="restaurant-content" style="padding-top: 0px">
+<section class="section pt-lg-0 pb-0 pb-lg-6" id="restaurant-content" style="padding-top: 0px">
   <input type="hidden" id="rid" value="{{ $restorant->id }}" />
   <div class="container container-restorant">
     @if(!$restorant->categories->isEmpty())
