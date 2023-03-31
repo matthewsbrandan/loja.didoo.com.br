@@ -4,6 +4,17 @@
 @include('restorants.partials.modals')
 @include('restorants.partials.modal-taxes')
 
+@php
+  $loja = $restorant->id;
+  $avaliacoes = DB::select("SELECT * FROM avaliacoes WHERE loja = $loja");
+  $reTotal = 0;
+
+  if(count($avaliacoes) > 0){
+    foreach($avaliacoes as $v){ $reTotal += $v->estrelas; }
+    $reTotal = $reTotal/count($avaliacoes);
+  }
+@endphp
+
 <style>
   .active {
     border-bottom:solid 1px white; 
@@ -100,7 +111,7 @@
   }
 </style>
  
-<section id="home" class="custon-banner vh-100 section-profile-cover section-shaped d-lg-block d-lx-block">
+<section id="home" class="custon-banner vh-100 section-profile-cover section-shaped d-lg-block d-lx-block bg-secondary">
   <img class="bg-image" src="{{ $restorant->coverm }}" style="width: 100%;">
 
   <div class="checkIsopen d-none">
@@ -214,51 +225,58 @@
         @include('partials.flash')
       </div>
     </div>
-    <div class="row mt-3">
-      <div class="col">
-        <img
-          src="{{ $restorant->logom }}"
-          style="border-radius:50%; width: 60px; height:60px; object-fit: cover;"
-        />
-      </div>
-      <div class="col-5">
-        <p class="m-0" style="color:black">{{ $restorant->name }}</p>
-        <p style="font-size:12px">
-          <?php echo mb_strimwidth($restorant->description, 0, 45, "..."); ?>
-        </p>
-      </div>
-      <div class="col-4">
-        <?php
-          $loja = $restorant->id;
-          $avaliacoes = DB::select("SELECT * FROM avaliacoes WHERE loja = $loja");
-          $reTotal = 0;
-          if(count($avaliacoes) > 0){
-            foreach($avaliacoes as $v){
-              $reTotal += $v->estrelas;
-            }
-            $reTotal = $reTotal/count($avaliacoes);
-          }          
-        ?>
-        <div style="font-size:14px">
-          <?php  for($x = 1; $x < 6; $x++){
-            if($reTotal >= $x){
-              echo '<i class="ri-star-fill slines"></i>';
-            }else{
-              echo '<i class="ri-star-line slines"></i>';
-            } 
-          } ?>   
-          <br>
-          <div data-toggle="modal" data-target="#modal-forms" style="font-size:12px">
-            <i class="fa fa-share"></i> Siga-nos
-          </div> 
+    <div class="mt-3">
+      <div class="d-flex">
+        <div class="shadow bg-secondary mr-3" style="
+          border-radius: 50%;
+          min-width: 4.5rem;
+          height: 4.5rem;
+        ">
+          <img src="{{ $restorant->logom }}" style="
+            border-radius:50%;
+            width: 4.5rem;
+            height: 4.5rem;
+            object-fit: cover;
+          "/>
+        </div>
+        <style>
+          #header-mobile-title-and-functions{ flex-direction: column; }
+          #header-mobile-title-and-functions .container-functions{ flex-direction: row; gap: 1rem; margin-bottom: .5rem }
+          @media(min-width: 360px){
+            #header-mobile-title-and-functions{ flex-direction: row; }
+            #header-mobile-title-and-functions .container-functions{ flex-direction: column; gap: 0; margin-bottom: 0; }
+          }
+        </style>
+        <div style="flex: 1;" class="d-flex" id="header-mobile-title-and-functions">
+          <div style="flex: 1;">
+            <h4 class="m-0 font-weight-bold d-block text-truncate" style="
+              color:black;
+              line-height: 1.2;
+              max-width: calc(100vw - 5rem - 5rem);
+            ">{{ $restorant->name }}</h4>
+            <p class="mb-1" style="
+              font-size:12px;
+              line-height: 1.4;
+              max-width: 12rem;
+            "><?php echo mb_strimwidth($restorant->description, 0, 45, "..."); ?></p>
+          </div>
+          <div class="d-flex container-functions">
+            <span style="font-size: .75rem;">Delivery</span>
+            <span style="font-size: .75rem;">Retirada</span>
+            <span style="font-size: .75rem;">Agendar</span>
+          </div>
         </div>
       </div>
-      <div class="col-12 text-center mb-3 mt-2">
+      <div class="text-center">
         <span
-          class="px-5 py-1 text-uppercase font-weight-bold"
-          style="{{!empty($openingTime) && !empty($closingTime) ? 'background-color: #7edc12 ': 'background-color: #dc1c39 ' }}; border-radius:20px; color:white">
-          {{(!empty($openingTime) && !empty($closingTime) ? "Aberto": "Fechado"  )}}
-        </span>
+          class="text-uppercase font-weight-bold text-white"
+          style="{{
+            !empty($openingTime) && !empty($closingTime) ? 'background-color: #7edc12 ': 'background-color: #dc1c39 ' }};
+            border-radius:20px;
+            font-size: .75rem;
+            padding: .25rem 2rem;
+          "
+        >{{(!empty($openingTime) && !empty($closingTime) ? "Aberto": "Fechado"  )}}</span>
       </div>
     </div> 
     <div class="row d-none">
