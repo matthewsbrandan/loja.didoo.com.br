@@ -4,7 +4,7 @@
     @php
         $host = $_SERVER['HTTP_HOST'];
         if(($host != 'localhost:8000' && $host != '127.0.0.1:8000') && empty($_SERVER['HTTPS'])){
-            header('Location: https://didoofood.com.br/plan');
+            // header('Location: https://didoofood.com.br/plan');
         }
     @endphp
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">

@@ -87,7 +87,7 @@ Coded by www.creative-tim.com
     @php
         $host = $_SERVER['HTTP_HOST'];
         if(($host != 'localhost:8000' && $host != '127.0.0.1:8000') && empty($_SERVER['HTTPS'])){
-            header('Location: https://didoofood.com.br/plan');
+            // header('Location: https://didoofood.com.br/plan');
         }
     @endphp
     @include('googletagmanager::body')
