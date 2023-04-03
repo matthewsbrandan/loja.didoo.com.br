@@ -219,7 +219,7 @@
 <!-- MOBILE -->
 
 <section class="section section-lg d-md-block d-lg-none d-lx-none p-sm-0" style="padding-bottom: 0px">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
         @include('partials.flash')
@@ -290,17 +290,17 @@
       </div>
     </div>
   </div>
-  <div class="container"> 
+  <div class="container-fluid"> 
   @if(!$restorant->categories->isEmpty())
     <nav class="tabbable sticky" style="top: {{ config('app.isqrsaas') ? 100 : 100 }}px; z-index: 999;">
       <ul class="nav nav-pills scrollmenu">
         <li class="nav-item nav-item-category items">
-          <a class="mb-sm-3 mb-md-0 active" data-toggle="tab" role="tab" href="">{{ __('Tudo') }}</a>
+          <a class="mb-sm-3 mb-md-0 active text-sm" data-toggle="tab" role="tab" href="">{{ __('Tudo') }}</a>
         </li>
         @foreach ( $restorant->categories as $key => $category)
         @if(!$category->items->isEmpty())
         <li class="nav-item nav-item-category items" id="{{ 'cat_'.clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">
-          <a class="mb-sm-3 mb-md-0" data-toggle="tab" role="tab" id="{{ 'nav_'.clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" href="#{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">{{ $category->name }}</a>
+          <a class="mb-sm-3 mb-md-0 text-sm" data-toggle="tab" role="tab" id="{{ 'nav_'.clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" href="#{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">{{ $category->name }}</a>
         </li>
         @endif
         @endforeach
@@ -312,19 +312,19 @@
 
 <section class="section pt-lg-0 pb-0 pb-lg-6" id="restaurant-content" style="padding-top: 0px">
   <input type="hidden" id="rid" value="{{ $restorant->id }}" />
-  <div class="container container-restorant">
+  <div class="container-fluid container-restorant">
     @if(!$restorant->categories->isEmpty())
       @foreach ( $restorant->categories as $key => $category)
         @if(!$category->aitems->isEmpty())
           <div id="{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" class="{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">      
             <div class="paragrafo">
-              <h3 class="font-weight-bold" style="color:gray">{{ $category->name }}</h3> <hr>
+              <h4 class="font-weight-bold mb-1" style="color:gray">{{ $category->name }}</h4> <hr>
             </div>
           </div>
         @endif
         <div class="row  {{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">
           @foreach ($category->aitems as $item)
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 handle-search-product" data-title="{{ $item->name }}" id="product-{{ $item->id }}">
+            <div class="col-xl-3 col-sm-4 col-6 handle-search-product px-1" data-title="{{ $item->name }}" id="product-{{ $item->id }}">
               <div class="card mb-4 box-shadow" onClick="setCurrentItem({{ $item->id }})">
                 @if(!empty($item->image))
                   <div class="card-img-top" style='background-image:url({{ $item->logom }}); background-size:100%'></div>
@@ -332,15 +332,24 @@
                 @if(empty($item->image))
                   <img class="card-img-top" src="https://via.placeholder.com/150x150">
                 @endif
-                <div class="card-body text-center">
-                  <h6 class="card-title font-weight-bold">
-                    <b><a onClick="setCurrentItem({{ $item->id }})" href="javascript:void(0)">{{ $item->name }}</a></b>
-                  </h6>
-                  <p class="card-text">{{ $item->short_description}}</p>
-                  <p class="card-text h5 font-weight-bold">
-                    @money($item->price, config('settings.cashier_currency'),config('settings.do_convertion'))
-                  </p> 
-                  <a onClick="setCurrentItem({{ $item->id }})" href="javascript:void(0)" class="btn btn-sm px-5 py-2 bg-fixed text-white" style="border-radius:40px">Comprar</a>
+                <div class="card-body text-center px-2 px-md-4 d-flex flex-column justify-content-between" style="min-height: 14rem;">
+                  <div>
+                    <h6 class="card-title font-weight-bold mb-1 text-sm overflow-hidden" style="max-height: 2.6rem;">
+                      <b><a onClick="setCurrentItem({{ $item->id }})" href="javascript:void(0)">{{ $item->name }}</a></b>
+                    </h6>
+                    <p class="card-text text-sm overflow-hidden" style="max-height: 2.6rem; line-height: 1.4;">{{ $item->short_description}}</p>
+                  </div>
+                  <div>
+                    <p class="card-text h5 font-weight-bold mb-2">
+                      @money($item->price, config('settings.cashier_currency'),config('settings.do_convertion'))
+                    </p> 
+                    <a
+                      onClick="setCurrentItem({{ $item->id }})"
+                      href="javascript:void(0)"
+                      class="btn btn-sm px-4 px-md-5 py-2 bg-fixed text-white"
+                      style="border-radius:40px; max-width: 100%;"
+                    >Comprar</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -793,7 +802,20 @@
 
   function appendOption(name, id) {
     lastAdded = id;
-    $('#variants-area-inside').append('<div id="variants-area-' + id + '"><br /><label class="form-control-label"><b>' + name + '<b></label><div><div id="variants-area-inside-' + id + '" class="btn-group btn-group-toggle" data-toggle="buttons"> </div></div>');
+    $('#variants-area-inside').append(`
+      <div id="variants-area-${id}">
+        <br />
+        <label class="form-control-label font-weight-bold" style="color: #32325d;">${name}</label>
+        <div>
+          <div
+            id="variants-area-inside-${id}"
+            class="btn-group btn-group-toggle"
+            data-toggle="buttons"
+            style="flex-wrap: wrap; gap: .4rem;"
+          ></div>
+        </div>
+      </div>
+    `);
   }
 
   function optionChanged(option_id, name) {

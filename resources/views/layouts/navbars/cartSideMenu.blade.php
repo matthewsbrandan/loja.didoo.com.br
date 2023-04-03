@@ -1,4 +1,4 @@
-<div id="cartSideNav" class="sidenav-cart sidenav-cart-close" style="background:#e9e9e9">
+<div id="cartSideNav" class="sidenav-cart sidenav-cart-close">
     
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     
@@ -10,7 +10,7 @@
             <div class="searchable-container">
                 <div id="cartList">
                     <div v-for="item in items" class="items col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix">
-                        <div class="row mb-2">
+                        <div class="row mb-2 mx-0">
                             <div class="col-4">
                                 <img :src="item.attributes.image"  class="productImage" alt="">
                             </div>
@@ -39,8 +39,8 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <button type="button" v-on:click="remove(item.id)"  :value="item.id" class="" style="margin-top:40px">
-                                    <span class="btn-inner--icon btn-cart-icon"><i class="fa fa-trash" style="font-size:30px; color:black;"></i></span>
+                                <button type="button" v-on:click="remove(item.id)"  :value="item.id" class="btn" style="margin-top:40px">
+                                    <span class="btn-inner--icon btn-cart-icon"><i class="fa fa-trash" style="font-size: 20px;"></i></span>
                                 </button>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                          
                     </div>
                 </div>
-                <div id="totalPrices" v-cloak>
+                <div id="totalPrices" v-cloak class="mx-2">
                     <div  class="mb-4 mb-xl-0">
                         <div class="">
                             <div class="row">
@@ -61,18 +61,25 @@
                         </div>
                     </div> 
                    <br>
-                    <div class="" data-toggle="modal" data-target="#modal-scheduling">
-                        <a  class="btn  bg-primary  text-white" style="text-transform:none; font-size:18px; border-radius:40px;">AGENDAR PARA OUTRA DATA</a>
+                    <div class="mb-2" data-toggle="modal" data-target="#modal-scheduling">
+                        <a 
+                            class="btn text-white font-weight-normal"
+                            style="background-color: #7800b4; text-transform:none; border-radius:40px; font-size: 1rem; line-height: 1; padding: .7rem;"
+                        >Agendar para outra data</a>
                     </div>
-                    <br>
-                    <div v-if="totalPrice" v-cloak class="text-center">
-                        <a type="button" class="btn-sm" style="text-transform:none; font-size:18px; border-radius:40px; border:solid 1px gray; color:gray" onclick="closeNav()">
-                            {{ __('Continue Shopping') }}
-                        </a>
+                    <div class="mb-2 text-center" v-if="totalPrice" v-cloak>
+                        <a
+                            class="btn-sm"
+                            style="text-transform:none; border-radius:40px; border: solid 1px gray; color:gray; font-size: 1rem;line-height: 1;padding: .7rem; cursor: pointer;"
+                            onclick="closeNav()"
+                        >{{ __('Continue Shopping') }}</a>
                     </div>
-                    <br>
                     <div v-if="totalPrice" v-cloak>
-                        <a href="/cart-checkout" class="btn-sm text-center text-white" style="background-color: #7800b4; font-size:18px; border-radius:40px">
+                        <a
+                            href="/cart-checkout"
+                            class="btn-sm text-center text-white"
+                            style="background-color: #7800b4; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
+                        >
                             {{ __('Finalizar Pedido') }}
                         </a>
                     </div>

@@ -37,7 +37,7 @@
           <div></div>
         </span>
         
-        <span class="navbar-toggler mr-2 mt-1" type="button" data-toggle="modal" data-target="#modal-search-product">
+        <span class="navbar-toggler mr-2 mt-1 text-center" type="button" data-toggle="modal" data-target="#modal-search-product">
           <i class="fa fa-search"></i>
         </span>
 
