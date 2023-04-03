@@ -53,7 +53,7 @@
                         <div class="">
                             <div class="row">
                                 <div class="col text-center mt-3">
-                                    <span v-if="totalPrice==0">{{ __('Cart is empty') }}!</span>
+                                    <span v-if="totalItems==0">{{ __('Cart is empty') }}!</span>
                                     <span v-if="totalPrice"><strong style="color:black">{{ __('Total') }}:</strong></span>
                                     <span v-if="totalPrice" class="ammount"><strong style="color:black">@{{ totalPriceFormat }}</strong></span>
                                 </div>

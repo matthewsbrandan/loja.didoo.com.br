@@ -2,6 +2,8 @@
 "use strict";
 var cartContent=null;
 var cartTotal=null;
+var cartResume=null;
+var cartBadge=null;
 var footerPages=null;
 var total=null;
 
@@ -24,6 +26,7 @@ function updatePrices(net,delivery,enableDelivery){
   //Subtotal
   cartTotal.totalPrice=net;
   cartTotal.totalPriceFormat=formatter.format(net);
+  cartResume.totalPriceFormat=cartTotal.totalPriceFormat;
 
   if(enableDelivery){
     //Delivery
@@ -81,7 +84,10 @@ function updateSubTotalPrice(net,enableDelivery){
  */
 function getCartContentAndTotalPrice(){
    axios.get('/cart-getContent').then(function (response) {
-    cartContent.items=response.data.data;
+    cartContent.items= response.data.data;
+    cartTotal.totalItems= Object.keys(response.data.data).length;
+    cartResume.totalItems= cartTotal.totalItems;
+    cartBadge.totalItems= cartTotal.totalItems;
     updateSubTotalPrice(response.data.total,true);
    })
    .catch(function (error) {
@@ -383,6 +389,7 @@ window.onload = function () {
   cartTotal= new Vue({
     el: '#totalPrices',
     data: {
+      totalItems: cartContent.items.length,
       totalPrice:0,
       minimalOrder:0,
       totalPriceFormat:"",
@@ -390,6 +397,17 @@ window.onload = function () {
       delivery:true,
     }
   })
+
+  cartResume= new Vue({
+    el: '#cartResume',
+    data: {
+      totalItems: cartTotal.totalItems,
+      totalPriceFormat: cartTotal.totalPriceFormat
+    }
+  });
+  cartBadge= new Vue({ el: '#cardResumeBadge', data: { totalItems: cartTotal.totalItems } });
+
+  
 
   //Call to get the total price and items
   getCartContentAndTotalPrice();

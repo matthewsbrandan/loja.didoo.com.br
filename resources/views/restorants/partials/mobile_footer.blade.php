@@ -19,6 +19,17 @@
 <!---FOOTER MOBILE------>
 
 <footer class="continer-fluid footer_mobile d-sm-none">
+	<div class="text-white text-sm font-weight-bold px-4" v-cloak v-if="totalItems > 0" id="cartResume" style="
+		margin-bottom: 4rem;
+		cursor: pointer;
+		background: #7edc12;
+	">
+		<div class="justify-content-between" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: .2rem;" onClick="openNav()">
+			<span>@{{ totalItems }}</span>
+			<span class="text-uppercase text-center">Ver Carrinho</span>
+			<span class="text-right">@{{ totalPriceFormat }}</span>
+		</div>
+	</div>
 	<div class="card p-2 px-2 fixed bg-secondary" style="margin-top:-4rem;">
 		<div style="
 			display: grid;
@@ -46,7 +57,7 @@
 			</div>
 			<div class="h-100 rounded-lg hover-bg-secondary text-center">
 				<span style="
-					position:fixed;
+					position:absolute;
 					margin-top: -7px;
     			margin-left: 5px;
 					padding:3px 6px 3px 6px;
@@ -74,10 +85,17 @@
 				</a>
 			</div>
 			<div class="h-100 rounded-lg hover-bg-secondary text-center">
+				<span id="cardResumeBadge" v-cloak v-if="totalItems > 0" style="
+					position:absolute;
+					margin-top: -7px;
+    			margin-left: 5px;
+					padding:3px 6px 3px 6px;
+					border-radius:50%;
+					background:#7800B4;					
+					color:white;
+					font-size:10px;
+				">@{{ totalItems }}</span>
 				<div onClick="openNav()" class="d-flex flex-column justify-center align-items-between h-100">
-					<span class="" style="position:fixed; margin-top:-10px; margin-left:20px; border-radius:50%; background:#7800B4; padding:3px 6px 3px 6px; color:white; font-size:10px">
-						<span id="qtd-here">0</span>
-					</span>
 					<i class="ri-shopping-cart-line text-xl"></i>
 					<span class="font-weight-bolder text-xs hide-max-350">Finalizar</span>
 				</div>
