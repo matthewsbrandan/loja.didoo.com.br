@@ -113,9 +113,9 @@
 		display: grid;
     grid-template-columns: repeat(3, 1fr);
 	">
-		<div class="p-3 d-flex align-items-center">
+		<a href="/pages/1" class="p-3 d-flex align-items-center text-white">
 			<span class="font-weight-bold">Cookies</span>
-		</div>
+		</a>
 		<a href="https://www.didoo.com.br" class="
 			p-3
 			d-flex
@@ -130,10 +130,11 @@
 				class="d-block ml-2" style="height: 1.35rem; object-fit: contain;"
 			/>
 		</a>
-		<div class="p-3 d-flex align-items-center justify-content-end text-right">
+		<a href="/pages/1" class="p-3 d-flex align-items-center text-white justify-content-end text-right">
 			<span class="font-weight-bold">
-				<span class="hide-max-490">Política de </span>Privacidade</span>
-		</div>
+				<span class="hide-max-490">Política de </span>Privacidade
+			</span>
+		</a>
 	</div>
 </footer>
 

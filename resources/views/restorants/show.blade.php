@@ -4,7 +4,7 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
   />
-  <style> .fancybox__container{ z-index: 999999; }
+  <style> .fancybox__container{ z-index: 999999; } </style>
 @endsection
 @section('content')
 @include('restorants.partials.modals')
@@ -630,6 +630,7 @@
 @endif
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+@include('restorants.partials.cookies')
 <script>
   "use strict";
   var items = [];
@@ -1066,47 +1067,46 @@
 
   }
   <?php
+    function clean($string)
+    {
+      $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
 
-  function clean($string)
-  {
-    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-
-    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
-  }
-
-  $items = [];
-  $categories = [];
-  foreach ($restorant->categories as $key => $category) {
-
-    array_push($categories, clean(str_replace(' ', '', strtolower($category->name)) . strval($key)));
-
-    foreach ($category->items as $key => $item) {
-
-      $formatedExtras = $item->extras;
-
-      foreach ($formatedExtras as &$element) {
-        $element->priceFormated = @money($element->price, config('settings.cashier_currency'), config('settings.do_convertion')) . "";
-      }
-
-      //Now add the variants and optins to the item data
-      $itemOptions = $item->options;
-
-      $theArray = [
-        'name' => $item->name,
-        'id' => $item->id,
-        'priceNotFormated' => $item->price,
-        'price' => @money($item->price, config('settings.cashier_currency'), config('settings.do_convertion')) . "",
-        'image' => $item->logom,
-        'image_variations' => $item->getImageVariations(),
-        'extras' => $formatedExtras,
-        'options' => $item->options,
-        'variants' => $item->variants,
-        'has_variants' => $item->has_variants == 1 && $item->options->count() > 0,
-        'description' => $item->description
-      ];
-      echo "items[" . $item->id . "]=" . json_encode($theArray) . ";";
+      return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
-  }
+
+    $items = [];
+    $categories = [];
+    foreach ($restorant->categories as $key => $category) {
+
+      array_push($categories, clean(str_replace(' ', '', strtolower($category->name)) . strval($key)));
+
+      foreach ($category->items as $key => $item) {
+
+        $formatedExtras = $item->extras;
+
+        foreach ($formatedExtras as &$element) {
+          $element->priceFormated = @money($element->price, config('settings.cashier_currency'), config('settings.do_convertion')) . "";
+        }
+
+        //Now add the variants and optins to the item data
+        $itemOptions = $item->options;
+
+        $theArray = [
+          'name' => $item->name,
+          'id' => $item->id,
+          'priceNotFormated' => $item->price,
+          'price' => @money($item->price, config('settings.cashier_currency'), config('settings.do_convertion')) . "",
+          'image' => $item->logom,
+          'image_variations' => $item->getImageVariations(),
+          'extras' => $formatedExtras,
+          'options' => $item->options,
+          'variants' => $item->variants,
+          'has_variants' => $item->has_variants == 1 && $item->options->count() > 0,
+          'description' => $item->description
+        ];
+        echo "items[" . $item->id . "]=" . json_encode($theArray) . ";";
+      }
+    }
   ?>
 </script>
 <script type="text/javascript">
