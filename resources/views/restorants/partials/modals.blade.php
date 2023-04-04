@@ -99,7 +99,9 @@
                     <span class="material-icons-outlined">chevron_right</span>
                   </button>
                   <div class="scrol_img">
-                    <div id="containerImg"><img class="item_img" id="modalImg" src=""></div>
+                    <a data-src data-fancybox="modal-gallery" id="containerImg">
+                      <img class="item_img" id="modalImg" src=""/>
+                    </a>
                   </div>
                   <div id="indicatingImageIndex"></div>
                 </div>
@@ -217,6 +219,21 @@
   </div>
 </div>
 @isset($restorant)
+  <div class="modal fade" id="modal-about-us" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h3 class="modal-title">Sobre Nós</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body pt-0">
+          <p class="mb-2">  {{ $restorant->description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="modal fade" id="modal-scheduling" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-" role="document">
       <div class="modal-content">

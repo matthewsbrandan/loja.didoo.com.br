@@ -120,9 +120,11 @@
                   <a href="/store/{{$restorant->subdomain}}" class="d-none d-lg-inline-block mr-3 b-bottom">
                     Catálogo
                   </a> 
-                  <a href="/store/{{$restorant->subdomain}}/sobre-nos" class="d-none d-lg-inline-block">
-                    Sobre nós
-                  </a>                  
+                  <a
+                    href="javascript:;"
+                    class="d-none d-lg-inline-block"
+                    data-toggle="modal" data-target="#modal-about-us"
+                  >Sobre nós</a>
                   <a href="/login" class="d-none d-lg-inline-block mx-4">
                     Entrar
                   </a>

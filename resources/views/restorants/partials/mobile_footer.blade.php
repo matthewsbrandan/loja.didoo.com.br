@@ -3,6 +3,7 @@
 		width: 100%;
 		position: sticky;
 		bottom: 0;
+		z-index: 1001;
 	}
 	.hover-bg-secondary{ transition: .2s; }
 	.hover-bg-secondary:hover{ background: #ddea; }

@@ -1,5 +1,11 @@
 @extends('layouts.front', ['class' => ''])
-
+@section('head')
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+  />
+  <style> .fancybox__container{ z-index: 999999; }
+@endsection
 @section('content')
 @include('restorants.partials.modals')
 @include('restorants.partials.modal-taxes')
@@ -48,7 +54,8 @@
   }
   @media(max-width:991px){
     .bb-sm {
-      margin-bottom:60px;
+      /* margin-bottom:60px; */
+      margin-bottom: .3rem;
     }
   }
   .stps {
@@ -241,7 +248,7 @@
         </div>
         <style>
           #header-mobile-title-and-functions{ flex-direction: column; }
-          #header-mobile-title-and-functions .container-functions{ flex-direction: row; gap: 1rem; margin-bottom: .5rem }
+          #header-mobile-title-and-functions .container-functions{ flex-direction: row; gap: .5rem; margin-bottom: .5rem }
           @media(min-width: 360px){
             #header-mobile-title-and-functions{ flex-direction: row; }
             #header-mobile-title-and-functions .container-functions{ flex-direction: column; gap: 0; margin-bottom: 0; }
@@ -260,10 +267,37 @@
               max-width: 12rem;
             "><?php echo mb_strimwidth($restorant->description, 0, 45, "..."); ?></p>
           </div>
-          <div class="d-flex container-functions">
-            <span style="font-size: .75rem;">Delivery</span>
-            <span style="font-size: .75rem;">Retirada</span>
-            <span style="font-size: .75rem;">Agendar</span>
+          <div class="d-flex flex-wrap container-functions">
+            <span class="d-flex align-items-center" style="font-size: .75rem; gap: .2rem;">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                style="fill: currentColor;"
+              ><path d="M19.15 8a2 2 0 0 0-1.72-1H15V5a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 1 1.73 3.49 3.49 0 0 0 7 .27h3.1a3.48 3.48 0 0 0 6.9 0 2 2 0 0 0 2-2v-3a1.07 1.07 0 0 0-.14-.52zM15 9h2.43l1.8 3H15zM6.5 19A1.5 1.5 0 1 1 8 17.5 1.5 1.5 0 0 1 6.5 19zm10 0a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z"></path></svg>
+              <span>Delivery</span>
+            </span>
+            <span class="d-flex align-items-center" style="font-size: .75rem; gap: .2rem;">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                style="fill: currentColor;"
+              ><path d="M19.148 2.971A2.008 2.008 0 0 0 17.434 2H6.566c-.698 0-1.355.372-1.714.971L2.143 7.485A.995.995 0 0 0 2 8a3.97 3.97 0 0 0 1 2.618V19c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-8.382A3.97 3.97 0 0 0 22 8a.995.995 0 0 0-.143-.515l-2.709-4.514zm.836 5.28A2.003 2.003 0 0 1 18 10c-1.103 0-2-.897-2-2 0-.068-.025-.128-.039-.192l.02-.004L15.22 4h2.214l2.55 4.251zM10.819 4h2.361l.813 4.065C13.958 9.137 13.08 10 12 10s-1.958-.863-1.993-1.935L10.819 4zM6.566 4H8.78l-.76 3.804.02.004C8.025 7.872 8 7.932 8 8c0 1.103-.897 2-2 2a2.003 2.003 0 0 1-1.984-1.749L6.566 4zM10 19v-3h4v3h-4zm6 0v-3c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v3H5v-7.142c.321.083.652.142 1 .142a3.99 3.99 0 0 0 3-1.357c.733.832 1.807 1.357 3 1.357s2.267-.525 3-1.357A3.99 3.99 0 0 0 18 12c.348 0 .679-.059 1-.142V19h-3z"></path></svg>
+              Retirada
+            </span>
+            <span class="d-flex align-items-center" style="font-size: .75rem; gap: .2rem;">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                style="fill: currentColor;"
+              ><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg>
+              Agendar
+            </span>
           </div>
         </div>
       </div>
@@ -595,6 +629,7 @@
 @endsection
 @endif
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 <script>
   "use strict";
   var items = [];
@@ -930,7 +965,7 @@
     $('#modalID').text(item.id);
     
     if (item.image != "/default/restaurant_large.jpg") {
-      $("#modalImg").attr("src", item.image);
+      $("#modalImg").attr("src", item.image).parent().attr('data-src', item.image);
       $("#modalDialogItem").addClass("modal-lg");
       $("#modalImgPart").show();
 
@@ -947,12 +982,24 @@
     if(item.image_variations != null){
       
       item.image_variations.forEach(image => { 
-        $('#containerImg').append(`<img class="item_img image_variations" src="${image}" alt="">`);
+        $('#containerImg').append(`
+          <a data-src="${image}" data-fancybox="modal-gallery">
+            <img class="item_img image_variations" src="${image}" alt="">
+          </a>
+        `);
         
       });
       
     }
     
+    try{
+      $('#modalImg, #containerImg [data-fancybox]').on('click',() => {Fancybox.bind('[data-fancybox="modal-gallery"]', { })});
+      // Start Fancybox on page load
+      // Fancybox.fromNodes(Array.from(document.querySelectorAll('[data-fancybox="modal-gallery"]')));
+    }catch(e){
+      console.error(e);
+    }
+
     $('#modalDescription').html(item.description);
 
 
@@ -975,9 +1022,12 @@
 
 
     $('#productModal').modal('show');
-    setTimeout(() => {
-      loadSlider(item.image_variations.length + 1, containerImag.clientWidth)
-    }, 1000);
+    if(item.image_variations && item.image_variations.length > 0){
+      setTimeout(() => {
+        loadSlider(item.image_variations.length + 1, containerImag.clientWidth)
+      }, 1000);
+    }
+
      
     extrasSelected = [];
 
@@ -1139,6 +1189,7 @@
         }
       }
     });
+
   }
 
 

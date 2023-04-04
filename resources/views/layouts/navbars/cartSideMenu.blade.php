@@ -64,13 +64,13 @@
                     <div class="mb-2" data-toggle="modal" data-target="#modal-scheduling">
                         <a 
                             class="btn text-white font-weight-normal"
-                            style="background-color: #7800b4; text-transform:none; border-radius:40px; font-size: 1rem; line-height: 1; padding: .7rem;"
+                            style="text-transform:none; border-radius:40px; background-color: gray; font-size: 1rem;line-height: 1;padding: .7rem; cursor: pointer;"
                         >Agendar para outra data</a>
                     </div>
                     <div class="mb-2 text-center" v-if="totalPrice" v-cloak>
                         <a
-                            class="btn-sm"
-                            style="text-transform:none; border-radius:40px; border: solid 1px gray; color:gray; font-size: 1rem;line-height: 1;padding: .7rem; cursor: pointer;"
+                            class="btn-sm text-white"
+                            style="background-color: #7800b4; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
                             onclick="closeNav()"
                         >{{ __('Continue Shopping') }}</a>
                     </div>
@@ -78,7 +78,7 @@
                         <a
                             href="/cart-checkout"
                             class="btn-sm text-center text-white"
-                            style="background-color: #7800b4; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
+                            style="background-color: #7edc12;; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
                         >
                             {{ __('Finalizar Pedido') }}
                         </a>
