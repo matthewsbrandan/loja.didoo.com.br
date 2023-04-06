@@ -25,7 +25,7 @@
 		cursor: pointer;
 		background: #7edc12;
 	">
-		<div class="justify-content-between" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: .2rem;" onClick="openNav()">
+		<div class="justify-content-between" style="display: grid; grid-template-columns: 1fr 8rem 1fr; gap: .2rem;" onClick="openNav()">
 			<span>@{{ totalItems }}</span>
 			<span class="text-uppercase text-center">Ver Carrinho</span>
 			<span class="text-right">@{{ totalPriceFormat }}</span>

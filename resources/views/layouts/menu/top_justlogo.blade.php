@@ -36,6 +36,13 @@
       <div></div>
       <div></div>
     </span>
+    @if(isset($restorant))
+      <h5 class="d-block d-lg-none bg-white px-3 m-0 text-truncate" style="
+        font-weight: bold;
+        border-radius: 1rem;
+        max-width: calc(100vw - 8.5rem);
+      ">{{ $restorant->name }}</h5>
+    @endif
     
     <span class="navbar-toggler mr-2 mt-1 text-center" type="button" data-toggle="modal" data-target="#modal-search-product">
       <i class="fa fa-search"></i>
@@ -48,17 +55,17 @@
       <div class="navbar-collapse-header" style="border-bottom:solid 1px transparent; padding:0px">
         <div class="row">
           @if(!config('settings.hide_project_branding'))
-          <div class="col-6 collapse-brand">
-            <a href="#">
-              <img src="{{ config('global.site_logo') }}">
-            </a>
-          </div>
+            <div class="col-6 collapse-brand">
+              <a href="#">
+                <img src="{{ config('global.site_logo') }}">
+              </a>
+            </div>
           @else
-          <div class="col-6 collapse-brand">
-            <a href="#">
-              
-            </a>
-          </div>
+            <div class="col-6 collapse-brand">
+              <a href="#">
+                
+              </a>
+            </div>
           @endif
           <div class="col-6 collapse-close">
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
