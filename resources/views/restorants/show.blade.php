@@ -361,10 +361,18 @@
             <div class="col-xl-3 col-sm-4 col-6 handle-search-product px-1" data-title="{{ $item->name }}" id="product-{{ $item->id }}">
               <div class="card mb-4 box-shadow" onClick="setCurrentItem({{ $item->id }})">
                 @if(!empty($item->image))
-                  <div class="card-img-top" style='background-image:url({{ $item->logom }}); background-size:100%'></div>
+                  <div class="card-img-top" style="
+                    background-image:url({{ $item->logom }});
+                    background-size: cover;
+                    background-position: center;
+                  "></div>
                 @endif
                 @if(empty($item->image))
-                  <img class="card-img-top" src="https://via.placeholder.com/150x150">
+                  <img
+                    class="card-img-top"
+                    src="https://via.placeholder.com/150x150"
+                    style="object-fit: cover; object-position: center;"
+                  />
                 @endif
                 <div class="card-body text-center px-2 px-md-4 d-flex flex-column justify-content-between" style="min-height: 14rem;">
                   <div>
