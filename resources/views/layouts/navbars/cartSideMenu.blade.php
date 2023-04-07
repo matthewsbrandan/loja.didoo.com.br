@@ -70,7 +70,7 @@
                     <div class="mb-2 text-center" v-if="totalPrice" v-cloak>
                         <a
                             class="btn-sm text-white"
-                            style="background-color: #7800b4; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
+                            style="background-color: #6B238E; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
                             onclick="closeNav()"
                         >{{ __('Continue Shopping') }}</a>
                     </div>
@@ -78,7 +78,7 @@
                         <a
                             href="/cart-checkout"
                             class="btn-sm text-center text-white"
-                            style="background-color: #7edc12;; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
+                            style="background-color: #009900;; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
                         >
                             {{ __('Finalizar Pedido') }}
                         </a>

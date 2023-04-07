@@ -29,7 +29,7 @@
     margin-right:20px;
   }
   .bg-fixed {
-    background: #7800B4;
+    background: #6B238E;
   }
   .card-img-top {
     height:280px;
@@ -63,7 +63,7 @@
     bottom: 75px;
     right: 40px;
     font-size:11px;
-    background: #7800B4;
+    background: #6B238E;
     padding: 3px 5px 3px 5px;
     border-radius:50%;
     color: white;
@@ -84,8 +84,8 @@
   }
 
   ul.scrollmenu > li.items > a.active{
-    color: #7800b4;
-    border-bottom:solid 2px #7800b4;
+    color: #6B238E;
+    border-bottom:solid 2px #6B238E;
   }
   .sfillx {
     color: #edbf23;
@@ -256,11 +256,18 @@
         </style>
         <div style="flex: 1;" class="d-flex" id="header-mobile-title-and-functions">
           <div style="flex: 1;">
+            <style>
+              @media (max-width: 359px){
+                #menu-mobile-title-restorant{
+                  max-width: calc(100vw - 7rem) !important;
+                }
+              }
+            </style>
             <h4 class="m-0 font-weight-bold d-block text-truncate" style="
               color:black;
               line-height: 1.2;
-              max-width: calc(100vw - 5rem - 5rem);
-            ">{{ $restorant->name }}</h4>
+              max-width: calc(100vw - 5rem - 7rem);
+            " id="menu-mobile-title-restorant">{{ $restorant->name }}</h4>
             <p class="mb-1" style="
               font-size:12px;
               line-height: 1.4;
@@ -305,7 +312,7 @@
         <span
           class="text-uppercase font-weight-bold text-white"
           style="{{
-            !empty($openingTime) && !empty($closingTime) ? 'background-color: #7edc12 ': 'background-color: #dc1c39 ' }};
+            !empty($openingTime) && !empty($closingTime) ? 'background-color: #009900 ': 'background-color: #dc1c39 ' }};
             border-radius:20px;
             font-size: .75rem;
             padding: .25rem 2rem;

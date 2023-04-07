@@ -23,7 +23,7 @@
 	<div class="text-white text-sm font-weight-bold px-4" v-cloak v-if="totalItems > 0" id="cartResume" style="
 		margin-bottom: 4rem;
 		cursor: pointer;
-		background: #7edc12;
+		background: #009900;
 	">
 		<div class="justify-content-between" style="display: grid; grid-template-columns: 1fr 8rem 1fr; gap: .2rem;" onClick="openNav()">
 			<span>@{{ totalItems }}</span>
@@ -63,7 +63,7 @@
     			margin-left: 5px;
 					padding:3px 6px 3px 6px;
 					border-radius:50%;
-					background:#7800B4;					
+					background:#6B238E;					
 					color:white;
 					font-size:10px;
 				"><span><?= count($avaliacoes); ?></span></span>
@@ -92,7 +92,7 @@
     			margin-left: 5px;
 					padding:3px 6px 3px 6px;
 					border-radius:50%;
-					background:#7800B4;					
+					background:#6B238E;					
 					color:white;
 					font-size:10px;
 				">@{{ totalItems }}</span>
@@ -108,7 +108,7 @@
 		left: 0; right: 0;
 
 		font-size: 12px;
-		background-color: #7800B4;
+		background-color: #6B238E;
 
 		display: grid;
     grid-template-columns: repeat(3, 1fr);

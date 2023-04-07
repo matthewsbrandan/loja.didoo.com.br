@@ -38,12 +38,12 @@
   }
   #variants-area-inside .btn-outline-primary:hover,
   #variants-area-inside .btn-outline-primary.active{
-    background: #7800B4 !important;
+    background: #6B238E !important;
     color: white !important;
   }
   #variants-area-inside .btn-outline-primary{
-    border-color: #7800B4 !important;
-    color: #7800B4 !important;
+    border-color: #6B238E !important;
+    color: #6B238E !important;
     border-radius: .6rem;
     font-size: .8rem;
     cursor: pointer;
@@ -55,7 +55,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered modal-" role="document" id="modalDialogItem">
     <div class="modal-content">
       <div class="modal-mobile-header d-sm-none" style="
-        background: #7800B4;
+        background: #6B238E;
         padding: .4rem 1rem;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
@@ -140,13 +140,13 @@
 
                       <div
                         class="d-flex form-control form-control-alternative p-0"
-                        style="width: fit-content; border: 2px solid #7800B4; border-radius: .6rem;"
+                        style="width: fit-content; border: 2px solid #6B238E; border-radius: .6rem;"
                       >
                         <button
                           type="button"
                           style="padding: .625rem .75rem;"
                           onclick="if(Number($(this).next().val() ?? 0) > 1) $(this).next().val(Number($(this).next().val() ?? 0) - 1)"
-                        ><i style="color: #7800B4;" class="fa fa-minus"aria-hidden="true"></i></button>
+                        ><i style="color: #6B238E;" class="fa fa-minus"aria-hidden="true"></i></button>
                         <input
                           required
                           autofocus
@@ -163,7 +163,7 @@
                           type="button"
                           style="padding: .625rem .75rem;"
                           onclick="$(this).prev().val(Number($(this).prev().val() ?? 0) + 1)"
-                        ><i style="color: #7800B4;" class="fa fa-plus" aria-hidden="true"></i></button>
+                        ><i style="color: #6B238E;" class="fa fa-plus" aria-hidden="true"></i></button>
                       </div>
                     </div>
                     <div class="quantity-btn">
@@ -171,7 +171,7 @@
                         <button
                           class="btn btn-primary"
                           v-on:click='addToCartAct'
-                          style="background: #7800B4; border-radius: 1rem;"
+                          style="background: #6B238E; border-radius: 1rem;"
                         >{{ __('Add To Cart') }}</button>
                       </div>
                     </div>
