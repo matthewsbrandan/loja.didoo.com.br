@@ -424,19 +424,22 @@
     </a> 
   @endif
   @if(!(isset($canDoOrdering)&&!$canDoOrdering))
-  <div
-    onClick="openNav()"
-    class="callOutShoppingButtonBottom icon icon-shape bg-gradient-red text-white rounded-circle shadow mb-4"
-    style="
-      position: fixed;
-      bottom: .8rem;
-      right: 17px;
-      width: 2.9rem;
-      height: 2.9rem;
-    "
-  >
-    <i class="fa fa-shopping-cart"></i>
-  </div>
+    <div
+      onClick="openNav()"
+      class="
+        callOutShoppingButtonBottom icon icon-shape bg-gradient-red text-white rounded-circle shadow mb-4
+        d-none d-sm-block d-lg-none
+      "
+      style="
+        position: fixed;
+        bottom: .8rem;
+        right: 17px;
+        width: 2.9rem;
+        height: 2.9rem;
+      "
+    >
+      <i class="fa fa-shopping-cart"></i>
+    </div>
   @endif
   
   @include('restorants.partials.mobile_footer')

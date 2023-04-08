@@ -439,7 +439,7 @@
                     ];
                   ?>
                   <button
-                    type="button" style="min-width: 10rem; margin-bottom: 1.2rem !important; display: inline-block;"
+                    type="button" style="min-width: 10rem; margin-bottom: 1.2rem !important; display: inline-block; border-radius: 1rem;"
                     class="btn btn-light my-1 btn-day-schedule"
                     onclick="$(this).next().toggle()"
                   >
@@ -459,7 +459,7 @@
                   </table>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">{{ __('To schedule') }}</button>
+                  <button type="submit" class="btn btn-primary my-4"  style="background: rgb(107, 35, 142); border-radius: 1rem;">{{ __('To schedule') }}</button>
                 </div>
               </form>
               </div>
