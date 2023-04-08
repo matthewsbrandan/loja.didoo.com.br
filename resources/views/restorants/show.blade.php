@@ -117,7 +117,7 @@
     }
   }
 </style>
- 
+
 <section id="home" class="custon-banner vh-100 section-profile-cover section-shaped d-lg-block d-lx-block bg-secondary">
   <img class="bg-image" src="{{ $restorant->coverm }}" style="width: 100%;">
 
@@ -516,23 +516,17 @@
             <h4 class="text-center mt-2 mb-3">{{ __('Fazer uma avaliação') }}</h4>
           </div>
           <div class="card-body px-lg-5 py-lg-5">
-            <form method="POST" action="{{ route('newrestaurant.store') }}"  autocomplete="off">
-              
-               @csrf
-              <?php if (Auth::check()) { 
-              $user = Auth::user();
-              ?>                           
-              <input name="nome" type="hidden" class="form-control mb-2" value="<?= $user->name; ?>" required>
-              <input name="email" type="hidden" class="form-control mb-2" value="<?= $user->email; ?>" required>
+            <form method="POST" action="{{ route('newrestaurant.store') }}"  autocomplete="off">              
+              @csrf
+              <?php if (Auth::check()) {  $user = Auth::user(); ?>                           
+                <input name="nome" type="hidden" class="form-control mb-2" value="<?= $user->name; ?>" required>
+                <input name="email" type="hidden" class="form-control mb-2" value="<?= $user->email; ?>" required>
               <?php } else { ?>
-              <input name="nome" type="text" class="form-control mb-2" placeholder="Digite seu nome" required>
-              <input name="email" type="email" class="form-control mb-2" placeholder="Digite seu e-mail" required>
+                <input name="nome" type="text" class="form-control mb-2" placeholder="Digite seu nome" required>
+                <input name="email" type="email" class="form-control mb-2" placeholder="Digite seu e-mail" required>
               <?php } ?>
               
-              <textarea name="comentario" class="form-control mb-2" placeholder="Escreva um comentário..." required=""></textarea>
-              
-              <input name="link" type="hidden" value="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
-              
+              <textarea name="comentario" class="form-control mb-2" placeholder="Escreva um comentário..." required=""></textarea>              
               <input name="update"  type="hidden" value="{{ $restorant->id }}"> 
               
               <div class="mb-2">
@@ -1138,6 +1132,34 @@
   ?>
 </script>
 <script type="text/javascript">
+  $(function(){
+    @if(session()->has('fixed-temp-message'))
+    @php $fixedTempMessageId = bin2hex(random_bytes(16)); @endphp
+    $('body').append(`
+      <div
+        class="alert alert-success alert-dismissible fade show pr-5"
+        id="fixed-temp-message-{{ $fixedTempMessageId }}"
+        role="alert"
+        style="
+          position: fixed;
+          top: 4rem;
+          right: 0;
+        "
+      >
+        {{ session()->get('fixed-temp-message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+    `);
+    setTimeout(() => {
+      $('#fixed-temp-message-{{ $fixedTempMessageId }}').remove();
+    },5000);
+    @endif
+  });
+
+
+
   function getLocation(callback) {
     $.ajaxSetup({
       headers: {

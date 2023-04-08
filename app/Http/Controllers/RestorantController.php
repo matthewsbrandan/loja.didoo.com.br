@@ -558,7 +558,6 @@ class RestorantController extends Controller
 
     public function storeRegisterRestaurant(Request $request){
         if($request->update > 0){ 
-            
             $data = date("Y-m-d H:i:s");
             
             DB::table('avaliacoes')->insert([
@@ -571,8 +570,10 @@ class RestorantController extends Controller
                 'data' => $data
             ]);
             
-            return redirect($request->link);
-            
+            return redirect()->back()->with(
+                'fixed-temp-message',
+                'Avaliação enviada com sucesso'
+            );
         }else{
             //Validate first
             $theRules = [
