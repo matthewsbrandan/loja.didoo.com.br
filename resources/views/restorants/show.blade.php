@@ -29,7 +29,7 @@
     margin-right:20px;
   }
   .bg-fixed {
-    background: #6B238E;
+    background: #6B238E !important;
   }
   .card-img-top {
     height:280px;
@@ -423,11 +423,21 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
     </a> 
   @endif
-  {{-- @if(!(isset($canDoOrdering)&&!$canDoOrdering))
-  <div onClick="openNav()" class="callOutShoppingButtonBottom icon icon-shape bg-gradient-red text-white rounded-circle shadow mb-4">
-    <i class="ni ni-cart"></i>
+  @if(!(isset($canDoOrdering)&&!$canDoOrdering))
+  <div
+    onClick="openNav()"
+    class="callOutShoppingButtonBottom icon icon-shape bg-gradient-red text-white rounded-circle shadow mb-4"
+    style="
+      position: fixed;
+      bottom: .8rem;
+      right: 17px;
+      width: 2.9rem;
+      height: 2.9rem;
+    "
+  >
+    <i class="fa fa-shopping-cart"></i>
   </div>
-  @endif --}}
+  @endif
   
   @include('restorants.partials.mobile_footer')
 

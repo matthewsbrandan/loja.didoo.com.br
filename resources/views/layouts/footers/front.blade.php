@@ -23,6 +23,7 @@
     <div class="container-fluid bg-fixed text-white py-2" style="
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        background: black;
     ">
         <a href="/pages/1" class="p-3 d-flex align-items-center text-white">
             <span class="font-weight-bold">Cookies</span>

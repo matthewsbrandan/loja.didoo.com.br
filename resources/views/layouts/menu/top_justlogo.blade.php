@@ -77,6 +77,13 @@
       </div>
 
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+        @if(\Request::route()->getName() === "cart.checkout")        
+          <li class="web-menu mr-1">
+            <a  href="#card-cart-payment" class="btn btn-icon btn-success" style="cursor:pointer;">
+              <span class="nav-link-inner--text">Finalizar</span>
+            </a>
+          </li>
+        @endif
         @isset($restorant)
           @yield('addiitional_button_1')
           @yield('addiitional_button_2')
@@ -217,6 +224,7 @@
                 background: #dde;
                 background-image: url('{{ $restorant->logom }}');
                 background-size: cover;
+                background-position: center;
                 padding:30px;
                 height: 12rem;
                 width: 12rem;
