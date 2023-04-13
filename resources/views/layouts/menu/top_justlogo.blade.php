@@ -11,6 +11,7 @@
       padding-bottom:300px;
     }
   }
+  #navbar-main:not(.custom-nav) #h5-restaurant-top-just-logo{ display: none !important; }
 </style>
 <nav id="navbar-main" class="navbar navbar-light navbar-expand-lg  bg-w p-0 fixed-top" style="min-height: 3.5rem;">
   <div class="container-fluid"> 
@@ -37,7 +38,7 @@
       <div></div>
     </span>
     @if(isset($restorant))
-      <h5 class="d-block d-lg-none bg-white px-3 m-0 text-truncate" style="
+      <h5 class="d-block d-lg-none bg-white px-3 m-0 text-truncate" id="h5-restaurant-top-just-logo" style="
         font-weight: bold;
         border-radius: 1rem;
         max-width: calc(100vw - 8.5rem);

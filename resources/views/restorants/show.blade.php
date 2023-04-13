@@ -351,7 +351,11 @@
   </div>
 </section> 
 
-<section class="section pt-lg-0 pb-0 pb-lg-6" id="restaurant-content" style="padding-top: 0px">
+<section class="section pt-lg-0 pb-0 pb-lg-6" id="restaurant-content" style="
+  padding-top: 0px;
+  max-width: 1300px;
+  margin: auto;
+">
   <input type="hidden" id="rid" value="{{ $restorant->id }}" />
   <div class="container-fluid container-restorant">
     @if(!$restorant->categories->isEmpty())
