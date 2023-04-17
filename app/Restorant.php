@@ -20,7 +20,12 @@ class Restorant extends MyModel
         'logo',
         'description',
         'city_id',
+
         'instagram',
+        'facebook',
+        'tiktok',
+        'youtube',
+        
         'has_delivery_tax',
         'taxes',
         'theme',

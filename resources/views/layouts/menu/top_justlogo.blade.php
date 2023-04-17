@@ -239,6 +239,51 @@
                   <h5 class="mb-0" style="font-weight: bold;">{{ $restorant->name }}</h5>
                 @endif
                 @if($restorant->subname){{ $restorant->subname }} @endif
+                <div class="d-flex align-items-center" style="gap: .8rem;">
+                    @if($restorant->facebook)
+                        <a
+                            class="nav-link nav-link-icon"
+                            href="{{ $restorant->facebook }}"
+                            target="_blank"
+                            data-toggle="tooltip" title="Curta nossa página no facebook"
+                        >
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    @endif
+                    @if($restorant->instagram)
+                        <a
+                            class="nav-link nav-link-icon"
+                            href="{{ config('global.instagram') }}"
+                            target="_blank"
+                            data-toggle="tooltip"
+                            title="Nos siga no instagram"
+                        >
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    @endif
+                    @if($restorant->tiktok)
+                        <a
+                            class="nav-link nav-link-icon"
+                            href="{{ config('global.tiktok') }}"
+                            target="_blank"
+                            data-toggle="tooltip"
+                            title="Nos siga no tiktok"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor;transform: ;msFilter:;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg>
+                        </a>
+                    @endif
+                    @if($restorant->youtube)
+                        <a
+                            class="nav-link nav-link-icon"
+                            href="{{ config('global.youtube') }}"
+                            target="_blank"
+                            data-toggle="tooltip"
+                            title="Se inscreva no nosso canal do youtube"
+                        >
+                            <i class="fa fa-youtube"></i>
+                        </a>
+                    @endif
+                </div>
               </div>
             </div>
           </li>
