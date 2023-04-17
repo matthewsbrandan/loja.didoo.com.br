@@ -1,3 +1,15 @@
+@php 
+	if($restorant){
+		$theme = $restorant->getTheme();
+	}else{
+		$theme = (object)[
+			'bg_primary' => '#6B238EFF',
+			'text_primary' => '#FFFFFFFF',
+			'bg_footer' => '#000000FF',
+			'text_primary' => '#FFFFFFFF'
+		];
+	}
+@endphp
 <div id="cartSideNav" class="sidenav-cart sidenav-cart-close">
     
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -69,8 +81,15 @@
                     </div>
                     <div class="mb-2 text-center" v-if="totalPrice" v-cloak>
                         <a
-                            class="btn-sm text-white"
-                            style="background-color: #6B238E; border-radius:40px; font-size: 1rem;line-height: 1;padding: .7rem;"
+                            class="btn-sm"
+                            style="
+                                background-color: {{ $theme->bg_primary }};
+                                color: {{ $theme->text_primary }};
+                                border-radius:40px;
+                                font-size: 1rem;
+                                line-height: 1;
+                                padding: .7rem;
+                            "
                             onclick="closeNav()"
                         >{{ __('Continue Shopping') }}</a>
                     </div>

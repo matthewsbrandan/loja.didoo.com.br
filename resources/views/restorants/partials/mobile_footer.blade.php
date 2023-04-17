@@ -1,3 +1,15 @@
+@php 
+	if($restorant){
+		$theme = $restorant->getTheme();
+	}else{
+		$theme = (object)[
+			'bg_primary' => '#6B238EFF',
+			'text_primary' => '#FFFFFFFF',
+			'bg_footer' => '#000000FF',
+			'text_primary' => '#FFFFFFFF'
+		];
+	}
+@endphp
 <style>
 	.footer_mobile{
 		width: 100%;
@@ -63,8 +75,8 @@
     			margin-left: 5px;
 					padding:3px 6px 3px 6px;
 					border-radius:50%;
-					background:#6B238E;					
-					color:white;
+					background: {{ $theme->bg_primary }};
+					color: {{ $theme->text_primary}};
 					font-size:10px;
 				"><span><?= count($avaliacoes); ?></span></span>
 				<div
@@ -92,8 +104,8 @@
     			margin-left: 5px;
 					padding:3px 6px 3px 6px;
 					border-radius:50%;
-					background:#6B238E;					
-					color:white;
+					background:{{ $theme->bg_primary }};
+					color:{{ $theme->text_primary }};
 					font-size:10px;
 				">@{{ totalItems }}</span>
 				<div onClick="openNav()" class="d-flex flex-column justify-center align-items-between h-100">
@@ -103,13 +115,13 @@
 			</div>    
 		</div>
 	</div>
-	<div class="mx-0 text-white" style="
+	<div class="mx-0" style="
 		position: absolute;
 		left: 0; right: 0;
 
 		font-size: 12px;
-		background-color: #6B238E;
-
+		background-color: {{ $theme->bg_primary }};
+		color: {{ $theme->text_primary }};
 		display: grid;
     grid-template-columns: repeat(3, 1fr);
 	">

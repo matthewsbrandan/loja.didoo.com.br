@@ -1,3 +1,15 @@
+@php 
+	if($restorant){
+		$theme = $restorant->getTheme();
+	}else{
+		$theme = (object)[
+			'bg_primary' => '#6B238EFF',
+			'text_primary' => '#FFFFFFFF',
+			'bg_footer' => '#000000FF',
+			'text_primary' => '#FFFFFFFF'
+		];
+	}
+@endphp
 <style>
   @media (max-width: 575px){
     #productModal .modal-dialog{
@@ -38,12 +50,12 @@
   }
   #variants-area-inside .btn-outline-primary:hover,
   #variants-area-inside .btn-outline-primary.active{
-    background: #6B238E !important;
-    color: white !important;
+    background: {{ $theme->bg_primary }} !important;
+    color: {{ $theme->text_primary }} !important;
   }
   #variants-area-inside .btn-outline-primary{
-    border-color: #6B238E !important;
-    color: #6B238E !important;
+    border-color: {{ $theme->bg_primary }} !important;
+    color: {{ $theme->bg_primary }} !important;
     border-radius: .6rem;
     font-size: .8rem;
     cursor: pointer;
@@ -55,7 +67,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered modal-" role="document" id="modalDialogItem">
     <div class="modal-content">
       <div class="modal-mobile-header d-sm-none" style="
-        background: #6B238E;
+        background: {{ $theme->bg_primary }};
         padding: .4rem 1rem;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
@@ -68,9 +80,10 @@
           data-dismiss="modal"
           aria-label="Close"
         >
-          <p class="my-auto text-white" style="font-size: .8rem;">Voltar</p>
-          <span aria-hidden="true" class="text-white" style="
-            border: 2px solid white;
+          <p class="my-auto" style="font-size: .8rem; color: {{ $theme->text_primary }};">Voltar</p>
+          <span aria-hidden="true" style="
+            border: 2px solid {{ $theme->text_primary }};
+            color: {{  $theme->text_primary }};
             border-radius: 50%;
             line-height: 1.1;
             height: 1.1rem;
@@ -140,13 +153,13 @@
 
                       <div
                         class="d-flex form-control form-control-alternative p-0"
-                        style="width: fit-content; border: 2px solid #6B238E; border-radius: .6rem;"
+                        style="width: fit-content; border: 2px solid {{ $theme->bg_primary }}; border-radius: .6rem;"
                       >
                         <button
                           type="button"
                           style="padding: .625rem .75rem;"
                           onclick="if(Number($(this).next().val() ?? 0) > 1) $(this).next().val(Number($(this).next().val() ?? 0) - 1)"
-                        ><i style="color: #6B238E;" class="fa fa-minus"aria-hidden="true"></i></button>
+                        ><i style="color: {{ $theme->bg_primary }};" class="fa fa-minus" aria-hidden="true"></i></button>
                         <input
                           required
                           autofocus
@@ -163,15 +176,19 @@
                           type="button"
                           style="padding: .625rem .75rem;"
                           onclick="$(this).prev().val(Number($(this).prev().val() ?? 0) + 1)"
-                        ><i style="color: #6B238E;" class="fa fa-plus" aria-hidden="true"></i></button>
+                        ><i style="color: {{ $theme->bg_primary }};" class="fa fa-plus" aria-hidden="true"></i></button>
                       </div>
                     </div>
                     <div class="quantity-btn">
                       <div id="addToCart1">
                         <button
-                          class="btn btn-primary"
+                          class="btn btn-primary border-0"
                           v-on:click='addToCartAct'
-                          style="background: #6B238E; border-radius: 1rem;"
+                          style="
+                            background: {{ $theme->bg_primary }};
+                            color: {{ $theme->text_primary }};
+                            border-radius: 1rem;
+                          "
                         >{{ __('Add To Cart') }}</button>
                       </div>
                     </div>
@@ -459,7 +476,11 @@
                   </table>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4"  style="background: rgb(107, 35, 142); border-radius: 1rem;">{{ __('To schedule') }}</button>
+                  <button type="submit" class="btn btn-primary border-0"  style="
+                    background: {{ $theme->bg_primary }};
+                    color: {{ $theme->text_primary }};
+                    border-radius: 1rem;
+                  ">{{ __('To schedule') }}</button>
                 </div>
               </form>
               </div>

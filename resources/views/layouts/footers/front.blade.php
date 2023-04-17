@@ -1,19 +1,23 @@
 <div class="d-none d-sm-block">
     @isset($restorant)
-        <div class="container-fluid d-flex py-4" style="background:black">
-            <div class="col-4 text-white">
+        @php $theme = $restorant->getTheme(); @endphp
+        <div class="container-fluid d-flex py-4" style="
+            background: {{ $theme->bg_footer }};
+            color: {{  $theme->text_footer }};
+        ">
+            <div class="col-4">
                 <img src="{{ $restorant->logom }}" class="rounded" />
-                <h3 class="text-white">{{ $restorant->name }}</h3>
-                <p class="text-white">
+                <h3>{{ $restorant->name }}</h3>
+                <p >
                     {{ $restorant->description }}
                 </p>
             </div>
-            <div class="col-4 text-white">
+            <div class="col-4">
                 <p>Horário de atendimento</p>
                 <p><i class="ri-time-line"></i> {{(!empty($openingTime) && !empty($closingTime) ? "$openingTime - $closingTime": "FECHADO" )}}</p>
             </div>
-            <div class="col-4 text-white">
-                <p><i class="ri-map-pin-line h1 text-white"></i> {{ $restorant->address }}</p>
+            <div class="col-4">
+                <p><i class="ri-map-pin-line h1"></i> {{ $restorant->address }}</p>
                 <p>
                     <a href="https://api.whatsapp.com/send?phone=+55{{ $restorant->phone }}" target="_blank" class="btn text-white mt-3" style="width: 75%; background: #34af23; border-radius: 30px;">Enviar WhatsApp</a>
                 </p>

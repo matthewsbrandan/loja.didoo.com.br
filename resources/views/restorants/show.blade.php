@@ -19,6 +19,16 @@
     foreach($avaliacoes as $v){ $reTotal += $v->estrelas; }
     $reTotal = $reTotal/count($avaliacoes);
   }
+	if($restorant){
+		$theme = $restorant->getTheme();
+	}else{
+		$theme = (object)[
+			'bg_primary' => '#6B238EFF',
+			'text_primary' => '#FFFFFFFF',
+			'bg_footer' => '#000000FF',
+			'text_primary' => '#FFFFFFFF'
+		];
+	}
 @endphp
 
 <style>
@@ -29,7 +39,8 @@
     margin-right:20px;
   }
   .bg-fixed {
-    background: #6B238E !important;
+    background: {{ $theme->bg_primary }} !important;
+    color: {{ $theme->text_primary }} !important;
   }
   .card-img-top {
     height:280px;
@@ -63,10 +74,10 @@
     bottom: 75px;
     right: 40px;
     font-size:11px;
-    background: #6B238E;
+    background: {{ $theme->bg_primary }};
     padding: 3px 5px 3px 5px;
     border-radius:50%;
-    color: white;
+    color: {{ $theme->text_primary }};
   }
    
   ul.scrollmenu { 
@@ -84,8 +95,8 @@
   }
 
   ul.scrollmenu > li.items > a.active{
-    color: #6B238E;
-    border-bottom:solid 2px #6B238E;
+    color: {{ $theme->bg_primary }};
+    border-bottom:solid 2px {{ $theme->bg_primary }};
   }
   .sfillx {
     color: #edbf23;
