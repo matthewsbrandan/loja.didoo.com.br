@@ -44,7 +44,7 @@
       max-width: 100%;
       width: 100%;
     }
-    p{ display: none; }
+    #accept-cookies p{ display: none; }
     #accept-cookies .content button {
       padding: .2rem;
     }

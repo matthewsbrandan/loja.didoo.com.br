@@ -12,7 +12,7 @@
 
 @php
   $loja = $restorant->id;
-  $avaliacoes = DB::select("SELECT * FROM avaliacoes WHERE loja = $loja");
+  $avaliacoes = DB::select("SELECT * FROM avaliacoes WHERE loja = $loja ORDER BY id DESC");
   $reTotal = 0;
 
   if(count($avaliacoes) > 0){
@@ -124,7 +124,6 @@
     #home > .bg-image{
       height: 180px;
       object-fit: cover;
-      filter: brightness(0.4);
     }
   }
 </style>
@@ -612,7 +611,15 @@
               </div>
               
               <center> 
-                <input type="submit" value="Avaliar" class="btn bg-primary mt-3 text-white">
+                <input
+                  type="submit"
+                  value="Avaliar"
+                  class="btn bg-primary mt-3 border-0"
+                  style="
+                    background: {{ $theme->bg_primary }} !important;
+                    color: {{ $theme->text_primary }} !important;
+                  "
+                >
               </center>
               
             </form>

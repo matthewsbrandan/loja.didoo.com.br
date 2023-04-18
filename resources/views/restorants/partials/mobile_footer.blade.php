@@ -30,6 +30,7 @@
 <br><br><br> 
 
 <!---FOOTER MOBILE------>
+@include('restorants.partials.modal-rating')
 
 <footer class="continer-fluid footer_mobile d-sm-none">
 	<div class="text-white text-sm font-weight-bold px-4" v-cloak v-if="totalItems > 0" id="cartResume" style="
@@ -80,8 +81,7 @@
 					font-size:10px;
 				"><span><?= count($avaliacoes); ?></span></span>
 				<div
-					data-toggle="modal"
-					data-target="#avaliar"
+				onclick="$('#modal-rating-history').show('slow')"
 					class="d-flex flex-column justify-center align-items-between h-100"
 				>
 					<i class="ri-star-line text-xl"></i>
