@@ -37,6 +37,18 @@
     margin-top: 1rem;
     font-weight: bold;
   }
+  @media (max-width: 500px){
+    #accept-cookies{
+      left: 0;
+      bottom: 0;
+      max-width: 100%;
+      width: 100%;
+    }
+    p{ display: none; }
+    #accept-cookies .content button {
+      padding: .2rem;
+    }
+  }
 </style>
 <div id="accept-cookies" style="display: none;">
   <div class="content">
