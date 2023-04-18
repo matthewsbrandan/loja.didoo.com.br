@@ -81,7 +81,7 @@
 					font-size:10px;
 				"><span><?= count($avaliacoes); ?></span></span>
 				<div
-				onclick="$('#modal-rating-history').show('slow')"
+					onclick="$('#modal-rating-history').show('slow')"
 					class="d-flex flex-column justify-center align-items-between h-100"
 				>
 					<i class="ri-star-line text-xl"></i>

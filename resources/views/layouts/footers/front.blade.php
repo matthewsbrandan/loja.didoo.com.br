@@ -16,7 +16,11 @@
                 <p>Horário de atendimento</p>
                 <p><i class="ri-time-line"></i> {{(!empty($openingTime) && !empty($closingTime) ? "$openingTime - $closingTime": "FECHADO" )}}</p>
 
-
+                <a
+					onclick="$('#modal-rating-history').show('slow')"
+					class="text-sm d-block mb-2" style="text-decoration: underline"
+				>Ver Avaliações</a>
+                
                 @isset($restorant)
                     <div class="d-flex align-items-center" style="gap: .2rem;">
                         @if($restorant->facebook)
