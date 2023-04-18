@@ -17,7 +17,7 @@
                 <p><i class="ri-time-line"></i> {{(!empty($openingTime) && !empty($closingTime) ? "$openingTime - $closingTime": "FECHADO" )}}</p>
 
 
-                @if($restorant)
+                @isset($restorant)
                     <div class="d-flex align-items-center" style="gap: .2rem;">
                         @if($restorant->facebook)
                             <a
@@ -63,7 +63,7 @@
                             </a>
                         @endif
                     </div>          
-                @endif
+                @endisset
             </div>
             <div class="col-4">
                 <p><i class="ri-map-pin-line h1"></i> {{ $restorant->address }}</p>

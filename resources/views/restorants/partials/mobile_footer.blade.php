@@ -1,5 +1,5 @@
 @php 
-	if($restorant){
+	if(isset($restorant)){
 		$theme = $restorant->getTheme();
 	}else{
 		$theme = (object)[

@@ -19,7 +19,7 @@
     foreach($avaliacoes as $v){ $reTotal += $v->estrelas; }
     $reTotal = $reTotal/count($avaliacoes);
   }
-	if($restorant){
+	if(isset($restorant)){
 		$theme = $restorant->getTheme();
 	}else{
 		$theme = (object)[
