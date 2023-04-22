@@ -94,7 +94,6 @@ class RestorantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        
         //Validate first
         $vali = $request->loja;
         
@@ -194,6 +193,21 @@ class RestorantController extends Controller
         $restaurant->address = '';
         $restaurant->phone = $owner->phone;
         $restaurant->subdomain = $this->makeAlias(strip_tags($request->name));
+
+        if($request->theme_bg_primary ||
+            $request->theme_text_primary ||
+            $request->theme_bg_footer ||
+            $request->theme_text_footer
+        ){
+            $theme = $restaurant->getTheme();
+            
+            if($request->theme_bg_primary)   $theme->theme_bg_primary = $request->theme_bg_primary;
+            if($request->theme_text_primary) $theme->theme_text_primary = $request->theme_text_primary;
+            if($request->theme_bg_footer)    $theme->theme_bg_footer = $request->theme_bg_footer;
+            if($request->theme_text_footer)  $theme->theme_text_footer = $request->theme_text_footer;
+
+            $restaurant->theme = json_encode($theme);
+        }
         //$restaurant->logo = "";
         $restaurant->save();
 
@@ -363,8 +377,22 @@ class RestorantController extends Controller
         if (isset($request->city_id)) {
             $restaurant->city_id = $request->city_id;
         }
+        if($request->theme_bg_primary ||
+            $request->theme_text_primary ||
+            $request->theme_bg_footer ||
+            $request->theme_text_footer
+        ){
+            $theme = $restaurant->getTheme();
+            if($request->theme_bg_primary)   $theme->bg_primary = $request->theme_bg_primary;
+            if($request->theme_text_primary) $theme->text_primary = $request->theme_text_primary;
+            if($request->theme_bg_footer)    $theme->bg_footer = $request->theme_bg_footer;
+            if($request->theme_text_footer)  $theme->text_footer = $request->theme_text_footer;
 
-        //dd($request->all());
+            $restaurant->theme = json_encode($theme);
+        }
+        if($request->available_delivery_types && is_array($request->available_delivery_types)){
+            $restaurant->available_delivery_types = implode(',', $request->available_delivery_types);
+        }
 
         if ($request->hasFile('resto_logo')) {
             $restaurant->logo = $this->saveImageVersions(
@@ -561,7 +589,6 @@ class RestorantController extends Controller
 
     public function storeRegisterRestaurant(Request $request){
         if($request->update > 0){ 
-            
             $data = date("Y-m-d H:i:s");
             
             DB::table('avaliacoes')->insert([
@@ -574,8 +601,10 @@ class RestorantController extends Controller
                 'data' => $data
             ]);
             
-            return redirect($request->link);
-            
+            return redirect()->back()->with(
+                'fixed-temp-message',
+                'Avaliação enviada com sucesso'
+            );
         }else{
             //Validate first
             $theRules = [

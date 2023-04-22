@@ -61,36 +61,35 @@ Coded by www.creative-tim.com
         </script>
     @endif
 
-  @include('googletagmanager::head')
-  @yield('head')
-  @laravelPWA
+    @include('googletagmanager::head')
+    @yield('head')
+    @laravelPWA
   
-@if(isset($restorant) && isset($restorant->logom))
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ $restorant->logom }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ $restorant->logom }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ $restorant->logom }}">
-@else
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-@endif
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
+    @if(isset($restorant) && isset($restorant->logom))
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ $restorant->logom }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ $restorant->logom }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ $restorant->logom }}">
+    @else
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    @endif
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-<!-- Custom CSS defined by admin -->
-<link type="text/css" href="{{ asset('byadmin') }}/front.css" rel="stylesheet">
-
+    <!-- Custom CSS defined by admin -->
+    <link type="text/css" href="{{ asset('byadmin') }}/front.css" rel="stylesheet">
 </head>
 
 <body>
      
     @php
-        $host = $_SERVER['HTTP_HOST'];
-        if(($host != 'localhost:8000' && $host != '127.0.0.1:8000') && empty($_SERVER['HTTPS'])){
-            header('Location: https://didoofood.com.br/plan');
-        }
+        // $host = $_SERVER['HTTP_HOST'];
+        // if(($host != 'localhost:8000' && $host != '127.0.0.1:8000') && empty($_SERVER['HTTPS'])){
+        //     header('Location: https://didoofood.com.br/plan');
+        // }
     @endphp
     @include('googletagmanager::body')
     @auth()

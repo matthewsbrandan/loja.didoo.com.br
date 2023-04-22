@@ -21,10 +21,17 @@ class Restorant extends MyModel
         'logo',
         'description',
         'city_id',
+
         'instagram',
+        'facebook',
+        'tiktok',
+        'youtube',
+        
         'has_delivery_tax',
         'taxes',
-        'asaas_api_key'
+        'asaas_api_key',
+        'theme',
+        'available_delivery_types'
     ];
     protected $appends = ['alias','logom', 'icon', 'coverm'];
     protected $imagePath = '/uploads/restorants/';
@@ -153,6 +160,23 @@ class Restorant extends MyModel
 
                 return true;
             }
+        });
+    }
+
+    public function getTheme(){
+        if(gettype($this->theme) == 'string'){
+            return json_decode($this->theme, false) ?? (object)[
+                'bg_primary' => '#6B238EFF',
+                'text_primary' => '#FFFFFFFF',
+                'bg_footer' => '#000000FF',
+                'text_primary' => '#FFFFFFFF'
+            ];
+        }
+        return $this->theme;
+    }
+    public function getAvailableDeliveryTypes(){
+        return array_filter(explode(',',$this->available_delivery_types ?? ''), function($item){
+            return !!$item;
         });
     }
 

@@ -1,4 +1,4 @@
-@if($restorant &&
+@if(isset($restorant) &&
     $restorant->payment_info &&
     count(explode(',',$restorant->payment_info)) > 0)
 <div

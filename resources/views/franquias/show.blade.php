@@ -101,7 +101,7 @@
     </div>
 </section>
 
-<section class="section pt-lg-0" id="restaurant-content" style="padding-top: 0px">
+<section class="section pt-lg-0 pb-0 pb-lg-6" id="restaurant-content" style="padding-top: 0px">
     <input type="hidden" id="rid" value="{{ $restorant->id }}" />
     <div class="container container-restorant">
 
@@ -541,7 +541,7 @@
         $('#modalID').text(item.id);
         
         if (item.image != "/default/restaurant_large.jpg") {
-            $("#modalImg").attr("src", item.image);
+            $("#modalImg").attr("src", item.image).parent().attr('data-src', item.image);
             $("#modalDialogItem").addClass("modal-lg");
             $("#modalImgPart").show();
 
@@ -558,12 +558,23 @@
         if(item.image_variations != null){
             
             item.image_variations.forEach(image => { 
-                $('#containerImg').append(`<img class="item_img image_variations" src="${image}" alt="">`);
-                
+                $('#containerImg').append(`
+                    <a data-src="${image}" data-fancybox="modal-gallery">
+                        <img class="item_img image_variations" src="${image}" alt="">
+                    </a>
+                `);
             });
             
         }
         
+        try{    
+            Fancybox.bind('[data-fancybox="modal-gallery"]', { });    
+            // Start Fancybox on page load
+            Fancybox.fromNodes(Array.from(document.querySelectorAll('[data-fancybox="modal-gallery"]')));
+        }catch(e){
+            console.error(e);
+        }
+
         $('#modalDescription').html(item.description);
 
 
@@ -586,9 +597,11 @@
 
 
         $('#productModal').modal('show');
-        setTimeout(() => {
-            loadSlider(item.image_variations.length + 1, containerImag.clientWidth)
-        }, 1000);
+        if(item.image_variations && item.image_variations.length > 0){
+            setTimeout(() => {
+                loadSlider(item.image_variations.length + 1, containerImag.clientWidth)
+            }, 1000);
+        }
        
         extrasSelected = [];
 

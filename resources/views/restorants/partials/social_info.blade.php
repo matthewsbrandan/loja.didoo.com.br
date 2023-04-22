@@ -1,4 +1,4 @@
-<br />
+<hr/>
 <h6 class="heading-small text-muted mb-4">{{ __('Accepting Payments') }}</h6>
 <!-- Payment explanation and Mollie payments -->
 
@@ -30,33 +30,26 @@
 ]])
 
 @if (config('settings.is_whatsapp_ordering_mode'))
-<br />
-<h6 class="heading-small text-muted mb-4">{{ __('WhatsApp number') }}</h6>
+
+<hr/>
+<h6 class="heading-small text-muted mb-4">{{ __('Redes Sociais') }}</h6>
 <!-- Payment explanation and Mollie payments -->
 @include('partials.fields',['fields'=>[
     ['required'=>false,'ftype'=>'input','name'=>'Whatsapp phone', 'placeholder'=>'Whatsapp phone to receive orders on', 'id'=>'whatsapp_phone', 'value'=>$restorant->whatsapp_phone],
 ]])  
 @endif
-<br />
-<h6 class="heading-small text-muted mb-4">{{ __('Link to Instagram page') }}</h6>
 <!-- Payment explanation and Mollie payments -->
 @include('partials.fields',['fields'=>[
     ['required'=>false,'ftype'=>'input','name'=>'Instagram link', 'placeholder'=>'https://www.instagram.com/'.__('store').'/', 'id'=>'instagram', 'value'=>$restorant->instagram],
 ]])
-<br />
-<h6 class="heading-small text-muted mb-4">{{ __('LINK PARA A PÁGINA DO FACEBOOK') }}</h6>
 <!-- Payment explanation and Mollie payments -->
 @include('partials.fields',['fields'=>[
     ['required'=>false,'ftype'=>'input','name'=>'Facebook link', 'placeholder'=>'https://www.facebook.com/'.__('store').'/', 'id'=>'facebook', 'value'=>$restorant->facebook],
 ]])
-<br />
-<h6 class="heading-small text-muted mb-4">{{ __('LINK PARA A PÁGINA DO YOUTUBE') }}</h6>
 <!-- Payment explanation and Mollie payments -->
 @include('partials.fields',['fields'=>[
     ['required'=>false,'ftype'=>'input','name'=>'Youtube link', 'placeholder'=>'https://www.youtube.com/'.__('store').'/', 'id'=>'youtube', 'value'=>$restorant->youtube],
 ]])
-<br />
-<h6 class="heading-small text-muted mb-4">{{ __('LINK PARA A PÁGINA DO TIKTOK') }}</h6>
 <!-- Payment explanation and Mollie payments -->
 @include('partials.fields',['fields'=>[
     ['required'=>false,'ftype'=>'input','name'=>'Tiktok link', 'placeholder'=>'https://www.tiktok.com/'.__('store').'/', 'id'=>'tiktok', 'value'=>$restorant->tiktok],

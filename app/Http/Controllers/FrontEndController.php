@@ -540,7 +540,7 @@ class FrontEndController extends Controller
 
     public function restorant($alias)
     {
-        $subDomain = $this->getSubDomain();
+        $subDomain = $this->getSubDomain();        
         if ($subDomain && $alias !== $subDomain) {
             return redirect()->route('restorant', $subDomain);
         }

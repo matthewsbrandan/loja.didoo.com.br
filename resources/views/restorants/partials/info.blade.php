@@ -56,7 +56,6 @@
                     <span class="custom-toggle-slider rounded-circle"></span>
                 </label>
             </div>
-            <br/>
         @endif
         <br/>
         @if(config('app.isft'))
@@ -70,12 +69,11 @@
 
         @endif
         
-        <br/>
         <div class="row">
             <?php
                 $images=[
-                    ['name'=>'resto_logo','label'=>__('Restaurant Image'),'value'=>$restorant->logom,'style'=>'width: 295px; height: 200px;'],
-                    ['name'=>'resto_cover','label'=>__('Restaurant Cover Image'),'value'=>$restorant->coverm,'style'=>'width: 200px; height: 100px;']
+                    ['name'=>'resto_logo','label'=>__('Restaurant Image'),'value'=>$restorant->logom,'style'=>'max-width: 100%; object-fit: cover;'],
+                    ['name'=>'resto_cover','label'=>__('Restaurant Cover Image'),'value'=>$restorant->coverm,'style'=>'max-width: 100%; height: 100px;']
                 ]
             ?>
             @foreach ($images as $image)
@@ -85,6 +83,10 @@
             @endforeach
         </div>
 
+        @include('restorants.partials.theme')
+
+        @include('restorants.partials.available_delivery_types')
+        
         @include('restorants.partials.localisation')
 
         @if (config('settings.social_mode'))
