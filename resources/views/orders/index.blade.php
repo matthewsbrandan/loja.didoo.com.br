@@ -6,7 +6,6 @@
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
     </div>
 
-
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col">
@@ -17,7 +16,6 @@
         @include('layouts.footers.auth')
         @include('orders.partials.modals')
     </div>
-
     <div class="modal fade" id="modal-asign-driver" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
         <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
             <div class="modal-content">

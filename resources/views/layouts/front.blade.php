@@ -177,7 +177,9 @@ Coded by www.creative-tim.com
     <script src="{{ asset('custom') }}/js/js.js?id={{ config('config.version')}}"></script>
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"
+        integrity="sha512-efAcjYoYT0sXxQRtxGY37CKYmqsFVOIwMApaEbrxJr4RwqVVGw8o+Lfh/+59TU07+suZn1BWq4fDl5fdgyCNkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
      <!-- Google Map -->
      <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=<?php echo config('settings.google_maps_api_key'); ?>&libraries=places&callback=js.initializeGoogle"></script>

@@ -876,6 +876,7 @@
     "Your complement here ...": "Seu complemento aqui ...",
     "Complement": "Complemento",
     "Your name here ...": "Seu nome aqui ...",
+    "Your document here ...": "Seu documento aqui ...",
     "Your table number here ...": "O número da sua mesa aqui ...",
     "Client name": "Nome do cliente",
     "Just created": "Pedido recebido",
@@ -908,5 +909,19 @@
     "If you did not request a password reset, no further action is required.": "Se você não solicitou uma redefinição de senha, nenhuma ação adicional será necessária.",
     "Reset Password Notification": "Notificação de redefinição de senha",
     "This image format is not supported. Please only send images in png, jpg, jpeg or gif format": "Este formato de imagem não é aceito. Por favor envie apenas imagens no formato png, jpg, jpeg ou gif",
-    "Unsupported format": "Formato não suportado"
+    "Unsupported format": "Formato não suportado",
+    "Credit card name": "Nome do cartão",
+    "Credit card expiration": "Data de expiração",
+    "Credit card number": "Número impresso no cartão",
+    "Credit card cvc": "CVC",
+    "Asaas Api Key": "Chave da API de pagamento Asaas",
+    "Integration information": "Informações de integração",
+    "Integrations successfully updated.": "Integrações atualizadas com sucesso.",
+    "unpaid": "Aguardando pagamento",
+    "paid": "Pago",
+    "Payment online": "Pagamento online",
+    "Payment in delivery": "Pagamento na entrega",
+    "Your CPF here ...": "Seu CPF aqui ...",
+    "Your email here ...": "Seu email aqui ...",
+    "Your phone here ...": "Seu telefone aqui ..."
 }

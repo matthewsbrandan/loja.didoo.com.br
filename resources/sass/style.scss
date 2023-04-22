@@ -1,0 +1,7 @@
+.payment-online-delivery {
+    padding: 10px 25px;
+
+    > .custom-control-label::before {
+        display: none !important;
+    }
+}

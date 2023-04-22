@@ -13,7 +13,7 @@
 
         </div>
     </section>
-    <section class="section bg-secondary p-0" style="height: calc(60vh - 70px);">
+    <section class="section bg-secondary p-0" style="{{ $pixQrCode ? 'height: calc(100vh - 70px);' : 'height: calc(60vh - 70px);' }}">
       <div class="container d-flex justify-content-center">
         <div
           class="card card-profile shadow p-4 pb-5 d-flex flex-column justify-content-center"
@@ -23,6 +23,12 @@
             max-width: calc(100vw - 1rem) !important;
           "
         >
+          @if (isset($pixQrCode) && $pixQrCode !== null)
+            <p>Seu pedido foi reservado. Pague até as 23:59 de hoje para processarmos seu pedido.</p>
+            <img src="data:image/png;base64, {{ $pixQrCode['encodedImage'] }}" alt="">
+            <input class="form-control" id="pixCode" type="text" value={{ $pixQrCode['payload'] }} readonly>
+            <button class="btn btn-secondary mt-3" id="copyPixCode" onclick="navigator.clipboard.writeText($('#pixCode').val());">Copiar código do pix</button>
+          @endif
           @if($toWhatsapp)        
             <a
               href="{{ $toWhatsapp }}"

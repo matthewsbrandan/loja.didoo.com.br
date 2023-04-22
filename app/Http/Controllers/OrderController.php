@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Repositories\Orders\OrderRepoGenerator;
 use Akaunting\Money\Currency;
 use Akaunting\Money\Money;
@@ -314,7 +315,7 @@ class OrderController extends Controller
         return new Request($requestData);
     }
 
-    public function store(Request $request){
+    public function store(OrderRequest $request){
         // END:: NAME | BEGIN:: SCHEDULED
         if(isset($request->time) && $request->time){
             $min = $this->getMinutes(date('G:i', strtotime($request->time)));
@@ -330,6 +331,13 @@ class OrderController extends Controller
             if($request->paymentMethod == 'Cash' && isset($request->payChange) && $request->payChange){
                 $payment_method.= __('Change for $')." ".$request->payChange."\r\n";
             }
+
+            if($request->paymentOnlineDelivery == 'online') {
+                $payment_method.= "Pagamento online \r\n";
+            } else {
+                $payment_method.= "Pagamento na entrega \r\n";
+            }
+
             if(isset($request->comment)) $request->comment = $payment_method.$request->comment;
             else $request->request->add(['comment' => $payment_method]);
         }
@@ -377,12 +385,22 @@ class OrderController extends Controller
             notify()->error($validatorOnMaking->errors()->first()); 
             return $orderRepo->redirectOrInform(); 
         }
+        
+        if($request->paymentOnlineDelivery == 'online' && ($request->paymentMethod == 'Credit Card' || $request->paymentMethod == 'Debit Card' || $request->paymentMethod == 'Pix')){
+            $paymentController = new PaymentController;
+            $gatewayPayment = $paymentController->handleGatewayPayment($request, $orderRepo->order);
+            
+            if($gatewayPayment['billingType'] == 'PIX') {
+                $qrCode = $paymentController->getGatewayPixUrl($gatewayPayment['id'], $orderRepo->order->restorant);
+            }
+        }
 
         return redirect()->route('redirectToWhatsapp',[
             'restorant_id' => $orderRepo->vendor->id,
-        ])->with(
-            'redirectToWhatsapp', $orderRepo->redirectOrInform()
-        );
+        ])->with([
+            'redirectToWhatsapp' => $orderRepo->redirectOrInform(),
+            'pixQrCode' => $qrCode ?? null,
+        ]);
         // return  view('restorants.returnStore',[
         //     'storeLink' => $orderRepo->vendor->getLinkAttribute()
         // ])->with('url',$orderRepo->redirectOrInform());
@@ -394,10 +412,13 @@ class OrderController extends Controller
         if(session()->has('redirectToWhatsapp')) return view('restorants.returnStore',[
             'restorant' =>$restorant,
             'toWhatsapp' => session()->get('redirectToWhatsapp') ?? null,
-            'goBack' => $restorant->getLinkAttribute()
+            'goBack' => $restorant->getLinkAttribute(),
+            'pixQrCode' => session()->get('pixQrCode') ?? null
+            
         ]);
         return redirect($restorant->getLinkAttribute());
     }
+
     public function store_old(Request $request)
     {
         $redirect_url = null;

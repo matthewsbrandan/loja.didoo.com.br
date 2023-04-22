@@ -356,6 +356,9 @@ class RestorantController extends Controller
         if($request->has('subname')){
             $restaurant->subname = $request->subname;
         }
+        if($request->has('asaas_api_key')){
+            $restaurant->asaas_api_key = $request->asaas_api_key;
+        }
 
         if (isset($request->city_id)) {
             $restaurant->city_id = $request->city_id;

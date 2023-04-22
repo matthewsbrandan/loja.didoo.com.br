@@ -23,7 +23,15 @@
           <label class="custom-control-label" for="deliveryTypeTable">{{ __('Table') }}</label>
         </div>
         @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"tableNumber",'placeholder'=>"Your table number here ...",'required'=>false])
-        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"nameID",'placeholder'=>"Your name here ...",'required'=>true])
+       <div class="row">
+        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"nameID",'placeholder'=>"Your name here ...",'class'=>"col-6",'required'=>false])
+       
+        @if ($restorant->asaas_api_key)
+          @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"documentID",'placeholder'=>"Your CPF here ...",'class'=>"col-6",'required'=>false])
+          @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"emailID",'placeholder'=>"Your email here ...",'class'=>"col-6",'required'=>false])
+          @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"phoneID",'placeholder'=>"Your phone here ...",'class'=>"col-6",'required'=>false])
+        @endif
+       </div>
       </div>
       <br />
       <br />

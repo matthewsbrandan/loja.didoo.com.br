@@ -8,14 +8,14 @@
       </div>
       <div class="card-content border-top">
         <br />
-        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"zipcodeID",'placeholder'=>"Your zip code here ...",'required'=>true])
+        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"zipcodeID",'placeholder'=>"Your zip code here ...",'required'=>false])
+        
 
 
-
-        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"cityID",'placeholder'=>"Your city here ...",'required'=>true])
-        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"neighborhoodID",'placeholder'=>"Your neighborhood here ...",'required'=>true])
-        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"addressID",'placeholder'=>"Your delivery address here ...",'required'=>true])
-        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"addressNumberID",'placeholder'=>"Your house number, block, fit here ...",'required'=>true])
+        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"cityID",'placeholder'=>"Your city here ...",'required'=>false])
+        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"neighborhoodID",'placeholder'=>"Your neighborhood here ...",'required'=>false])
+        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"addressID",'placeholder'=>"Your delivery address here ...",'required'=>false])
+        @include('partials.input',['ftype'=>'input','name'=>"",'id'=>"addressNumberID",'placeholder'=>"Your house number, block, fit here ...",'required'=>false])
         <br/>
         <div class="form-group">
           <textarea name="complementID" id="complementID" class="form-control" placeholder="{{ __( 'Your complement here ...' ) }}"></textarea>

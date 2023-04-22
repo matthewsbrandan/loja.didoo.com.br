@@ -26,6 +26,7 @@
     ['required'=>false,'ftype'=>'select','placeholder'=>"Payment info",'name'=>'Payment info', 'additionalInfo'=>'Select accepted payment methods', 'id'=>'payment_info', 'value'=> explode(',',$restorant->payment_info), 'data' => $paymentInfoDefault, 'multiple'=>true],
     ['required'=>false,'ftype'=>'input','placeholder'=>'Digite separado por vírgula','name'=>'Outras formas de pagamento (opcional)', 'id'=>'outher_payment'],
     ['required'=>false,'ftype'=>'input','placeholder'=>"Mollie Payment API key",'name'=>'Mollie Payment API key', 'additionalInfo'=>'Accept Mollie.com payment by entering the mollie api key', 'id'=>'mollie_payment_key', 'value'=>$restorant->mollie_payment_key],
+    ['required'=>false,'ftype'=>'input','placeholder'=>"Asaas Api Key",'name'=>'Asaas Api Key', 'id'=>'asaas_api_key', 'value'=>$restorant->asaas_api_key],
 ]])
 
 @if (config('settings.is_whatsapp_ordering_mode'))

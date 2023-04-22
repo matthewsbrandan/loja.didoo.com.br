@@ -3,6 +3,7 @@
 namespace App;
 
 use App\MyModel;
+use Illuminate\Http\Request;
 use willvincent\Rateable\Rateable;
 
 class Restorant extends MyModel
@@ -22,7 +23,8 @@ class Restorant extends MyModel
         'city_id',
         'instagram',
         'has_delivery_tax',
-        'taxes'
+        'taxes',
+        'asaas_api_key'
     ];
     protected $appends = ['alias','logom', 'icon', 'coverm'];
     protected $imagePath = '/uploads/restorants/';

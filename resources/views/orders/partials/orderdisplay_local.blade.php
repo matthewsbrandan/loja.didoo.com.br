@@ -9,6 +9,7 @@
         <th class="table-web" scope="col">{{ __('Items') }}</th>
         <th class="table-web" scope="col">{{ __('Price') }}</th>
         <th scope="col">{{ __('Last status') }}</th>
+        <th scope="col">{{ __('Payment status') }}</th>
         <th scope="col">{{ __('Actions') }}</th>
     </tr>
 </thead>
@@ -54,6 +55,11 @@
     </td>
     <td>
         @include('orders.partials.laststatus')
+    </td>
+    <td>
+        <span class="badge badge-pill {{ $order->payment_status == 'unpaid' ? 'badge-primary' : 'badge-success' }}">
+            {{ __($order->payment_status) }}
+        </span>
     </td>
     @include('orders.partials.actions.table',['order' => $order ])
 </tr>

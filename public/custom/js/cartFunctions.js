@@ -231,7 +231,12 @@ function orderTypeSwither(mod){
       if(mod=="pickup" || mod=="table"){
           chageDeliveryCost(0, false);
           $('.picTime').show();
-          $('#addressBox').hide();
+
+          if($('.paymentMethod:checked').val() == 'Credit Card' && $('.paymentOnlineDelivery:checked').val() == 'online') {
+            $('#addressBox').show();
+          } else {
+            $('#addressBox').hide();
+          }
 
           if(mod=="table"){
             $('#tableNumber').show().focus();
@@ -424,3 +429,38 @@ window.onload = function () {
     },
   });
 }
+
+$('.paymentOnlineDelivery').on('change', function (e) {
+  if($('.paymentMethod').is(":checked") && $('.paymentOnlineDelivery:checked').val() == 'online'){
+
+    $('.paymentMethod').each(function (i, e) {
+      if($(this).val() == 'Pix' || $(this).val() == 'Credit Card') {
+        $(this).parent().show('slow');
+      } else {
+        $(this).parent().hide('slow');
+      }
+    });
+
+    if($('.paymentMethod:checked').val() == 'Credit Card'){
+      $('#credit-card-form').show('slow');
+    }
+
+    $('#form-group-documentID').removeClass('d-none');
+    $('#form-group-emailID').removeClass('d-none');
+    $('#form-group-phoneID').removeClass('d-none');
+  } else {
+    $('.paymentMethod').each(function (i, e) {
+        $(this).parent().show('slow');
+    });
+
+    $('#credit-card-form').hide('slow');
+
+    $('#form-group-documentID').addClass('d-none');
+    $('#form-group-emailID').addClass('d-none');
+    $('#form-group-phoneID').addClass('d-none');
+  }
+});
+
+$(document).on("touchend", "body",  function(){
+  document.activeElement.blur();
+});

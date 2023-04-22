@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 //use PayPal\Auth\OAuthTokenCredential;
 //use PayPal\Rest\ApiContext;
+use Http;
 
 use Mollie\Laravel\Facades\Mollie;
 //use App\Payment;
@@ -33,6 +34,7 @@ use Paystack;
 class PaymentController extends Controller
 {
     private $apiContext;
+    private $client;
 
     public function __construct()
     {
@@ -44,6 +46,8 @@ class PaymentController extends Controller
        );
 
        $this->apiContext->setConfig($paypalConfig['settings']);*/
+
+       $this->client = Http::withHeaders(['access_token' => env('ASAAS_API_KEY')]);
     }
 
     public function view(Request $request)
@@ -199,5 +203,106 @@ class PaymentController extends Controller
 
             $order->update();
         }
+    }
+
+    public function handleGatewayPayment($request, $order)
+    {
+        $customer = $this->gatewayCustomer($request, $order->restorant);
+        $payment = $this->gatewayPayment($request, $order, $customer);
+ 
+        if($payment) {
+            $order->gateway_payment_id = $payment['id'];
+            $order->save();
+        }
+
+        return $payment;
+    }
+
+    public function gatewayCustomer($request, $restorant)
+    {
+        $customer = Http::withHeaders(['access_token' => $restorant->asaas_api_key])->get(env('ASAAS_API_URL') . '/customers', [
+            'cpfCnpj' => $request->documentID,
+        ]);
+        $customerResponse = $customer->json();
+
+        if($customerResponse['totalCount'] == 0) {
+            $customer = Http::withHeaders(['access_token' => $restorant->asaas_api_key])->post(env('ASAAS_API_URL') . '/customers', [
+                'name' => $request->nameID,
+                'cpfCnpj' => $request->documentID,
+                'notificationDisabled' => true
+            ]);
+
+            $customerResponse = $customer->json();
+        } else {
+            $customerResponse = $customerResponse['data'][0];
+        }
+
+        return $customerResponse;
+    }
+
+    public function gatewayPayment($request, $order, $customer)
+    {
+        $payload = [
+            'customer' => $customer['id'],
+            'billingType' => $this->paymentTypes($request->paymentMethod),
+            'value' => $order->order_price,
+            'dueDate' => now()->addDays(2)->format('Y-m-d'),
+            'split' => [
+                [
+                    'walletId' => env('ASAAS_WALLET_ID'),
+                    'fixedValue' => '0.35'
+                ],
+            ]
+        ];
+
+        if($this->paymentTypes($request->paymentMethod) == 'CREDIT_CARD') {
+            $expiry = explode('/', $request->input('creditCard.expirationDate'));
+
+            $creditCardInfo = [
+                'creditCard' => [
+                    'holderName' => $request->input('creditCard.name'),
+                    'number' => $request->input('creditCard.number'),
+                    'expiryMonth' => $expiry[0],
+                    'expiryYear' => $expiry[1],
+                    'ccv' => $request->input('creditCard.cvc'),
+                ],
+                'creditCardHolderInfo' => [
+                    'name' => $request->nameID,
+                    'email' => $request->emailID,
+                    'cpfCnpj' => $request->documentID,
+                    'postalCode' => $request->zipcodeID,
+                    'addressNumber' => $request->addressNumberID,
+                    'phone' => $request->phoneID,
+                ]
+            ];
+
+            $payload = array_merge($creditCardInfo, $payload);
+        }
+        
+        $payment = Http::withHeaders(['access_token' => $order->restorant->asaas_api_key])->post(env('ASAAS_API_URL') . '/payments', $payload);
+        $response = $payment->json();
+
+        return $response;
+    }
+
+    public function paymentTypes($payment)
+    {
+        switch ($payment) {
+            case 'Credit Card':
+                return 'CREDIT_CARD';
+            case 'Pix':
+                return 'PIX';
+            case 'Debit Card':
+                return 'DEBIT_CARD';
+            default:
+                break;
+        }
+    }
+
+    public function getGatewayPixUrl($id, $restorant)
+    {
+        $pix = Http::withHeaders(['access_token' => $restorant->asaas_api_key])->get(env('ASAAS_API_URL') . "/payments/" . $id . "/pixQrCode");
+        
+        return $pix->json();
     }
 }
